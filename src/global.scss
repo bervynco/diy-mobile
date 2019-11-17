@@ -1,0 +1,290 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* Inputs*/
+input, button, submit {
+    border: none;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=search],
+input[type=time],
+input[type=url],
+input[type=datetime]
+textarea {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: transparent;
+    margin-bottom: 4%;
+    border-bottom: 1px solid #ccc;
+    padding: 2%;
+    color: #555555;
+    border-radius: 3px;
+}
+
+select {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: transparent;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 2%;
+    color: #555555;
+    border-radius: 3px;
+    background-color: #FCFEFF;
+}
+
+select:hover, select:focus {
+    border: 2px solid #EB4E29;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999999;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #EB4E29;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+  /*  
+  [type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  [type="file"] + label {
+    background-color: #000;
+    border-radius: 4rem;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 2rem 4rem;
+  }
+    
+  [type="file"]:focus + label,
+  [type="file"] + label:hover {
+      background-color: #EB4E29;
+  }
+    
+  [type="file"]:focus + label {
+    outline: 1px dotted #000;
+  }  */
+  
+textarea:hover, textarea:focus {
+    border: 2px solid #EB4E29;
+    /* border-color: #EB4E29; */
+}
+  /* input[type=text]:focus,
+  input[type=password],
+  input[type=date]:focus,
+  input[type=datetime]:focus,
+  input[type=email]:focus,
+  input[type=number]:focus,
+  input[type=search]:focus,
+  input[type=time]:focus,
+  input[type=url]:focus,
+  textarea:focus,
+  select:focus {
+      box-shadow: 0 0 5px #EB4E29;
+      padding: 2%;
+      border: 1px solid #EB4E29;
+      border-radius: 3px;
+      background-color: #FCFEFF;
+  } */
+
+ion-datetime {
+    --padding-start: 2px;
+}
+
+.datetime-text .datetime-placeholder {
+    text-align: left;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+// ion-datetime::-webkit-input-placeholder {
+//     text-align: left;
+//     letter-spacing: 3px;
+//     text-transform: uppercase;
+//     font-size: 9px;
+// } 
+// input:focus::-webkit-input-placeholder 
+// {
+//     color: transparent;
+// }
+// input::-webkit-input-placeholder 
+// {
+//     text-align: left;
+//     letter-spacing: 3px;
+//     text-transform: uppercase;
+//     font-size: 9px;
+// }
+.input-group > .label {
+    font-size: 14px;
+    font-weight: 600;
+}
+.submit-button {
+    position: relative;
+    height: 40px;
+    margin: 10px 7px;
+    padding: 5px 5px;
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 2px;
+    /* color: #EB4E29; */
+    color: whitesmoke;
+    background: rgba(235, 78, 41, 1);
+    /* background: transparent; */
+    border: 1px solid rgba(235, 78, 41, 0.5);
+    border-radius: 2px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow:hidden;
+    z-index: 1;
+    cursor: pointer;
+    transition:         0.08s ease-in;
+    -o-transition:      0.08s ease-in;
+    -ms-transition:     0.08s ease-in;
+    -moz-transition:    0.08s ease-in;
+    -webkit-transition: 0.08s ease-in;
+    width: 100%;
+}
+.cancel-button {
+    position: relative;
+    height: 45px;
+    margin: 10px 7px;
+    padding: 5px 5px;
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 2px;
+    /* color: #EB4E29; */
+    color: Black;
+    background: rgba(255,255,255, 1);
+    /* background: transparent; */
+    border: 1px solid rgba(100,100,100, 0.5);
+    border-radius: 2px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow:hidden;
+    z-index: 1;
+    cursor: pointer;
+    transition:         0.08s ease-in;
+    -o-transition:      0.08s ease-in;
+    -ms-transition:     0.08s ease-in;
+    -moz-transition:    0.08s ease-in;
+    -webkit-transition: 0.08s ease-in;
+}
+/* 
+.submit-button:hover {
+    color: whitesmoke;
+}
+
+.submit-button:before {
+    content: "";
+    position: absolute;
+    background: rgba(235, 78, 41, 1);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: -1;
+    -webkit-transition: top 0.09s ease-in;
+}
+
+.submit-button:hover:before {
+    top: 0;
+} */
+
+.submit-button:disabled {
+    background-color: gray;
+    color: white;
+    transition: none !important;
+}

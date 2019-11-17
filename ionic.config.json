@@ -1,0 +1,7 @@
+{
+  "name": "diy-mobile-tabs",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

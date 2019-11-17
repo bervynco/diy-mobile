@@ -1,0 +1,59 @@
+<ion-header translucent>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button>
+				<ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Setup New Account</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content id="register-container">
+	<div id="register-form-container">
+		<div class="space-eater"></div>
+		<div id="register-logo">
+			<img src="../../assets/logo/diy-logo-transparent.png" width="180"/>
+		</div>
+		<div class="space-eater"></div>
+		<div id="register-form">
+			<form [formGroup]="registerForm" (submit)="register()">
+				<ion-item>
+					<ion-input type="email" placeholder="Email Address"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="text" placeholder="First Name"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="text" placeholder="Last Name"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" placeholder="Password"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" placeholder="Confirm Password"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-datetime displayFormat="MMMM DD YYYY" placeholder="Birthday"></ion-datetime>
+				</ion-item>
+				<button type="submit" class="submit-button" [disabled]="!registerForm.valid">Create Account </button>
+						<!-- <div class="input-group">
+							<input type="email" placeholder="First Name" required="required" formControlName="firstName"/>
+						</div>
+						<div class="input-group">
+							<input type="password" placeholder="Last Name" required="required" formControlName="lastName"/>
+						</div>
+						<div class="input-group">
+							<input type="email" placeholder="Email Address" required="required" formControlName="email"/>
+						</div>
+						<div class="input-group">
+							<input type="password" placeholder="Password" required="required" formControlName="password"/>
+						</div>
+						<div class="input-group">
+							<input type="password" placeholder="Confirm Password" required="required"/>
+						</div> -->
+						
+			</form>
+		</div>
+		<div class="space-eater"></div>
+	</div>
+</ion-content>

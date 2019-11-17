@@ -1,0 +1,162 @@
+/* #EB4E29 rgb(	235, 78, 41)- Primary Color - Orange*/
+/* #FCFEFF - Secondary Color - White */
+/* #35363A - Black Color */
+/* login-component {
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+} */
+/* ion-content {
+    width: 100vw;
+    height: 100vh;
+}
+ */
+#login-container {
+    height: calc(100vh - 700px);
+    width: 100vw;
+    display: flex;
+    flex-direction:column;
+    align-content:space-around;
+}
+#login-logo {
+    width:100%;
+    display: flex;
+    flex: 0 0 100px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    /* justify-content: flex-end; */
+}
+#login-form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    align-items: center;
+    overflow:hidden;
+}
+
+@media only screen and (max-width: 600px){
+    #login-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 250px;
+    }
+}
+@media only screen and (min-width: 600px){
+    #login-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 350px;
+    }
+}
+
+/* @media only screen and (max-width: 600px){
+    #login-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 300px
+    }
+} */
+
+
+@media only screen and (min-width: 768px){
+    #login-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 450px;
+    }
+}
+
+#login-form-container > .space-eater {
+    display: flex;
+    /* flex: 0 0 300px; */
+    flex: 1 0 auto;
+}
+
+#login-form-container > #login-form {
+    display: flex;
+    flex: 0 0 400px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-form-container > #create-account-container {
+    display: flex;
+    flex: 0 0 50px;
+    flex-direction: row;
+
+}
+#login-space-container {
+    display: flex;
+    flex: 0 0 600px;
+    
+}
+
+#login-form-header {
+    display: flex;
+    flex: 0 0 75px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-form-header > .login-header {
+    font-size: 26px;
+    color: #EB4E29;
+    font-weight: bolder;
+    background: /* gradient can be an image */
+    linear-gradient(
+      to right, 
+      #EB4E29 0%,
+      #ffa73d 100px
+    )
+    left 
+    bottom
+    no-repeat;
+    background-size:100px 3px ;
+    padding:10px;
+}
+#login-form-header > .login-subheader {
+    font-size: 14px;
+    color: rgb(120,120,120);
+}
+.login-hyperlink {
+    display: flex;
+    font-size: 12px;
+    text-decoration: underline;
+    color: rgb(120,120,120);
+    cursor:pointer;
+    justify-content: center;
+}
+.create-hyperlink {
+    display: flex;
+    font-size: 12px;
+    color: rgb(50,50,50);
+    cursor:pointer;
+    justify-content: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+input:focus::-webkit-input-placeholder 
+{
+     color: transparent;
+}
+input::-webkit-input-placeholder 
+{
+    text-align: left;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 9px;
+}
+/*
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#eb4e29+0,ffa73d+100,000000+100 */
+/*background: #eb4e29; /* Old browsers */
+/*background: -moz-linear-gradient(left, #eb4e29 0%, #ffa73d 100%, #000000 100%); /* FF3.6-15 */
+/*background: -webkit-linear-gradient(left, #eb4e29 0%,#ffa73d 100%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+/*background: linear-gradient(to right, #eb4e29 0%,#ffa73d 100%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eb4e29', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
+

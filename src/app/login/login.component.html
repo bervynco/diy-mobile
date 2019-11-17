@@ -1,0 +1,29 @@
+<ion-content id="login-container">
+    <div id="login-form-container">
+		<div class="space-eater"></div>
+		<div id="login-logo">
+			<img src="../../assets/logo/diy-logo-transparent.png" width="180"/>
+		</div>
+		<div id="login-form">
+			<form [formGroup]="loginForm" (submit)="login()">
+				<div id="login-form-header">
+					<p class="login-header"> Login </p>
+					<p class="login-subheader" > Welcome Back! Log-in to your account </p>
+				</div>
+				<div id="form-container">
+					<div class="input-group">
+						<input type="email" placeholder="Email Address" required="required" formControlName="email"/>
+					</div>
+					<div class="input-group">
+						<input type="password" placeholder="Password" required="required" formControlName="password"/>
+					</div>
+					<button type="submit" class="submit-button" [disabled]="!loginForm.valid">Login </button>
+					<a routerLink="/forgot-password" class="login-hyperlink"> Forgot your Password?  Reset it </a>
+				</div>
+			</form>
+		</div>
+		<a routerLink="/create-account" class="create-hyperlink"> Sign up </a>
+		<div class="space-eater"></div>
+    </div>
+    <div id="login-space-container"></div>
+</ion-content>
