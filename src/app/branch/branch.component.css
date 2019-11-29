@@ -1,0 +1,116 @@
+
+.navigation-item {
+    display: flex;
+    flex: 1 0 auto;
+}
+.navigation-image {
+    padding-left: 10px;
+    height: 125px;
+    width: 125px;
+}
+
+.navigation-details {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+.navigation-details > .space-eater {
+    
+    height: 10px;
+}
+.navigation-title {
+    color: #EB4E29;
+    font-weight: bolder;
+    font-size: 12px;
+}
+
+.navigation-subtitle {
+    color: #71737D;
+    font-weight: lighter;
+    font-size: 8px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.navigation-distance {
+    height: 100%;
+    display: flex;
+    flex: 0 0 60px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    
+}
+.navigation-distance > .space-eater {
+    width: 2px;
+}
+.navigation-total {
+    color: #EB4E29;
+    font-size: 16px;
+    font-weight: bolder;
+    display: flex;
+}
+
+.navigation-unit {
+    color: #71737D;
+    font-size: 12px;
+}
+@media only screen and (max-width: 600px){
+    .navigation-title {
+        color: #EB4E29;
+        font-weight: bolder;
+        font-size: 16px;
+    }
+    
+    .navigation-subtitle {
+        color: #71737D;
+        font-weight: lighter;
+        font-size: 12px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+@media only screen and (min-width: 600px){
+    .navigation-title {
+        color: #EB4E29;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    
+    .navigation-subtitle {
+        color: #71737D;
+        font-weight: lighter;
+        font-size: 16px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* @media only screen and (max-width: 600px){
+    #login-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 300px
+    }
+} */
+
+
+@media only screen and (min-width: 768px){
+    .navigation-title {
+        color: #EB4E29;
+        font-weight: bolder;
+        font-size: 24px;
+    }
+    
+    .navigation-subtitle {
+        color: #71737D;
+        font-weight: lighter;
+        font-size: 12px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

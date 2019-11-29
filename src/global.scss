@@ -26,53 +26,9 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 /* Inputs*/
-input, button, submit {
-    border: none;
-}
 
-input[type=text],
-input[type=password],
-input[type=email],
-input[type=number],
-input[type=search],
-input[type=time],
-input[type=url],
-input[type=datetime]
-textarea {
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    outline: none;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 100%;
-    background: transparent;
-    margin-bottom: 4%;
-    border-bottom: 1px solid #ccc;
-    padding: 2%;
-    color: #555555;
-    border-radius: 3px;
-}
-
-select {
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    outline: none;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 100%;
-    background: transparent;
-    margin-bottom: 4%;
-    border: 1px solid #ccc;
-    padding: 2%;
-    color: #555555;
-    border-radius: 3px;
-    background-color: #FCFEFF;
+.scroll-content {
+    padding-bottom: 0 !important;
 }
 
 select:hover, select:focus {

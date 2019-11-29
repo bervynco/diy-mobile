@@ -11,12 +11,12 @@
 					<p class="login-subheader" > Welcome Back! Log-in to your account </p>
 				</div>
 				<div id="form-container">
-					<div class="input-group">
-						<input type="email" placeholder="Email Address" required="required" formControlName="email"/>
-					</div>
-					<div class="input-group">
-						<input type="password" placeholder="Password" required="required" formControlName="password"/>
-					</div>
+					<ion-item>
+						<ion-input type="email" placeholder="Email Address" required="required" formControlName="email"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-input type="password" placeholder="Password" required="required" formControlName="password"></ion-input>
+					</ion-item>
 					<button type="submit" class="submit-button" [disabled]="!loginForm.valid">Login </button>
 					<a routerLink="/forgot-password" class="login-hyperlink"> Forgot your Password?  Reset it </a>
 				</div>
