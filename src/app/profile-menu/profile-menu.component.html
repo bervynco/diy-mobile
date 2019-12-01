@@ -1,0 +1,49 @@
+<ion-header translucent>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button [routerLink]="['/me']">
+				<ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Account Settings</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+	<ion-list>
+		<ion-item  button class="profile-menu-item" (click)="login()" [ngClass]="{'profile-menu-active': activeRoute=='Log In'}" *ngIf="!(isLoggedIn | async)">
+			<ion-icon slot="start" name="log-in"></ion-icon>
+			<ion-label class="profile-details">
+				<div class="profile-title">Login</div>
+			</ion-label>
+			<ion-ripple-effect type="bounded"></ion-ripple-effect>
+		</ion-item>
+		<ion-item button class="profile-menu-item" [ngClass]="{'profile-menu-active': activeRoute=='Update'}" *ngIf="(isLoggedIn | async)">
+			<ion-icon slot="start" name="person"></ion-icon>
+			<ion-label class="profile-details">
+				<div class="profile-title">Update Personal Information</div>
+			</ion-label>
+			<ion-ripple-effect type="bounded"></ion-ripple-effect>
+		</ion-item>
+		<ion-item button class="profile-menu-item" (click)="viewTerms()" [ngClass]="{'profile-menu-active': activeRoute=='Terms'}" >
+			<ion-icon slot="start" name="Lock"></ion-icon>
+			<ion-label class="profile-details">
+				<div class="profile-title">Terms and Conditions</div>
+			</ion-label>
+			<ion-ripple-effect type="bounded"></ion-ripple-effect>
+		</ion-item>
+		<ion-item button class="profile-menu-item" (click)="viewContactUs()" [ngClass]="{'profile-menu-active': activeRoute=='Contact Us'}" >
+			<ion-icon slot="start" name="help-circle"></ion-icon>
+			<ion-label class="profile-details">
+				<div class="profile-title">Contact Us</div>
+			</ion-label>
+			<ion-ripple-effect type="bounded"></ion-ripple-effect>
+		</ion-item>
+		<ion-item  button class="profile-menu-item" (click)="logout()" [ngClass]="{'profile-menu-active': activeRoute=='Log Out'}" *ngIf="(isLoggedIn | async)">
+			<ion-icon slot="start" name="log-out"></ion-icon>
+			<ion-label class="profile-details">
+				<div class="profile-title">Logout</div>
+			</ion-label>
+			<ion-ripple-effect type="bounded"></ion-ripple-effect>
+		</ion-item>
+	</ion-list>
+</ion-content>

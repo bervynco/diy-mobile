@@ -1,0 +1,13 @@
+.profile-title {
+    font-size: 14px;
+}
+.profile-menu-active {
+    color: #EB4E29 !important;
+    transition: 0.5s;
+}
+.profile-menu-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}

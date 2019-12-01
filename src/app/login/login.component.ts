@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, ReactiveFormsModule, FormGroup,  FormBuilder,  Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, LoadingController } from '@ionic/angular';
+
+
+import { AuthService } from '../auth.service';
+import { MeComponent } from '../me/me.component';
 @Component({
 	  selector: 'login',
 	  templateUrl: './login.component.html',
@@ -13,20 +17,41 @@ export class LoginComponent implements OnInit {
 	email:string;
 	password:string;
 	statusMessage:string;
-  	constructor(private formBuilder: FormBuilder, public alertController: AlertController, public toastController: ToastController, public Login: DataService) { }
+	spinnerLoader: any;
+	constructor(private formBuilder: FormBuilder, private alertController: AlertController, private toastController: ToastController, 
+			private loadingController: LoadingController, private Login: DataService, private authService:AuthService, private router: Router,
+	) { }
 
   	ngOnInit() {
+		
 		this.loginForm = this.formBuilder.group({
-			email: new FormControl('', [
+			email: new FormControl('jaaustria20@gmail.com', [
 				Validators.required
 			]),
-			password: new FormControl('', [
+			password: new FormControl('qwerty', [
 				Validators.required
 			]),
 
 		});
+		// this.hideLoader();
   	}
-	
+	showLoader() {
+		this.spinnerLoader = this.loadingController.create({
+			message: 'Please wait',
+			cssClass: '.custom-loading-class',
+			spinner: 'crescent',
+			
+		}).then((res) => {
+			console.log(res);
+			res.present();
+		});
+	}
+	 
+	hideLoader() {
+		setTimeout(() => {
+		  this.loadingController.dismiss();
+		}, 2000);
+	}
 	async createAlert(header, message){
 		const alert = await this.alertController.create({
 			header: header,
@@ -55,30 +80,35 @@ export class LoginComponent implements OnInit {
 		toast.present();
 	}
 	async login() {
+		this.showLoader();
 		let details = this.loginForm.value;
+		
 		this.Login.login(details).subscribe(
-				(res:any)=>{
-					console.log(res);
-					this.createToast("Login complete", 200, "bottom");
-					// if(res.status == 900){
-					// 	this.createAlert("Login failed", "The email address or password entered is incorrect");
-					// }
-					// else {
-					// 	// localStorage.setItem("access_token", res.accessToken);
-					// 	// localStorage.setItem("refresh_token",res.refreshToken);
-					// 	// this.router.navigate(["branch-management"]);
-					// 	// console.log("Complete");
-					// }
-				},(err) => {
-					this.createAlert("Login failed", "The email address or password entered is incorrect");
-				},() =>{
-					
-					
-		});
+			(res:any)=>{
+				this.createToast("Login complete", 200, "bottom");
+				this.authService.setStorage("auth", res);
+				this.authService.login();
+				this.createToast("Login successful",200, "bottom");
+				this.router.navigate(['/me']);
+				
+				
+				// if(res.status == 900){
+				// 	this.createAlert("Login failed", "The email address or password entered is incorrect");
+				// }
+				// else {
+				// 	// localStorage.setItem("access_token", res.accessToken);
+				// 	// localStorage.setItem("refresh_token",res.refreshToken);
+				// 	// this.router.navigate(["branch-management"]);
+				// 	// console.log("Complete");
+				// }
+			},(err) => {
+				this.createAlert("Login failed", "The email address or password entered is incorrect");
+			},() =>{
+				this.hideLoader();
+			}
+		);
 		
 	}
-		// if (this.loginForm.valid) {
-		// 	let details = this.loginForm.value;
 			
 
 }

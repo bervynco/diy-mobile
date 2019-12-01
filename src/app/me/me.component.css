@@ -1,0 +1,75 @@
+#profile-container {
+    height: calc(100vh - 700px);
+    width: 100vw;
+    display: flex;
+    flex-direction:column;
+}
+#profile-container > #profile-header {
+    display: flex;
+    flex-direction:row;
+    flex: 0 0 60px;
+    border-bottom: 1px solid rgb(220,220,220);
+}
+#profile-container > #profile-body {
+
+}
+
+
+#profile-container > #profile-login {
+    display: flex;
+    flex: 0 0 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-header > #space-eater {
+    display: flex;
+    flex: 0 0 15px;
+}
+#profile-header > #profile-account {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    border-right: 1px solid rgb(220,220,220);
+    
+}
+
+#profile-account > #profile-name {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: flex-end;
+    color: #EB4E29;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+#profile-account > .space-eater {
+    display: flex;
+    flex: 0 0 3px;
+}
+
+#profile-account > #profile-email {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: flex-start;
+    color: #71737D;
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+#profile-header > #profile-settings {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+#setting-button {
+    --ripple-color: transparent;
+    --color-focused: transparent;
+}
+
+

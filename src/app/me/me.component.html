@@ -1,0 +1,21 @@
+<ion-content>
+	<div id="profile-container">
+		<div id="profile-header">
+			<div id="space-eater"></div>
+			<div id="profile-account">
+				<div id="profile-name" *ngIf="isLoggedIn == true | async">Bervyn Co </div>
+				<div id="profile-email"  *ngIf="isLoggedIn == true | async">bervynco@gmail.com</div>
+			</div>
+			<div id="profile-settings">
+				<ion-button fill="clear" id="setting-button" [routerLink]="['/me/profile-menu']">
+					<ion-icon slot="icon-only" name="settings"></ion-icon>
+				</ion-button>
+			</div>
+		</div>
+		<div class="profile-body" *ngIf="isLoggedIn | async">
+		</div>
+		<div id="profile-login"  *ngIf="!(isLoggedIn | async)">
+			<ion-button color="primary" [routerLink]="['/me/login']">Sign up or Login</ion-button>
+		</div>
+	</div>
+</ion-content>
