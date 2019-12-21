@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'app-redeem',
@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./redeem.component.css'],
 })
 export class RedeemComponent implements OnInit {
-
 	constructor() { }
 	
 	ngOnInit() {}
+	public picture;
 
+  	ionViewDidLoad(){
+  	}
 }

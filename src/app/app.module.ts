@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
@@ -10,7 +10,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
-
+import { NgxBarcode6Module } from 'ngx-barcode6';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +23,9 @@ import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RedeemComponent } from './redeem/redeem.component';
 import { ScanComponent } from './scan/scan.component';
-
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { Interceptor } from './interceptor';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -36,7 +38,8 @@ import { ScanComponent } from './scan/scan.component';
 		ProfileMenuComponent,
 		HomeComponent,
 		ScanComponent,
-		RedeemComponent
+		RedeemComponent,
+		ChangePasswordComponent
 	],
 	entryComponents: [],
 	imports: [
@@ -46,14 +49,17 @@ import { ScanComponent } from './scan/scan.component';
 		ReactiveFormsModule,
         FormsModule,
 		HttpClientModule,
-		IonicStorageModule.forRoot()
+		IonicStorageModule.forRoot(),
+		NgxBarcode6Module
 	],
 	providers: [
 		StatusBar,
 		SplashScreen,
 		LaunchNavigator,
 		QRScanner,
-		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+		Geolocation,
+		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+		{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }  
 	],
 	bootstrap: [AppComponent]
 })

@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
 				this.authService.login();
 				this.createToast("Login successful",200, "bottom");
 				this.router.navigate(['/me']);
-				
+				this.hideLoader();
 				
 				// if(res.status == 900){
 				// 	this.createAlert("Login failed", "The email address or password entered is incorrect");
@@ -103,7 +103,6 @@ export class LoginComponent implements OnInit {
 				// }
 			},(err) => {
 				this.createAlert("Login failed", "The email address or password entered is incorrect");
-			},() =>{
 				this.hideLoader();
 			}
 		);

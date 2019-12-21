@@ -38,6 +38,13 @@
 			</ion-label>
 			<ion-ripple-effect type="bounded"></ion-ripple-effect>
 		</ion-item>
+		<ion-item  button class="profile-menu-item" (click)="changePassword()" [ngClass]="{'profile-menu-active': activeRoute=='Change Password'}" *ngIf="(isLoggedIn | async)">
+				<ion-icon slot="start" name="lock"></ion-icon>
+				<ion-label class="profile-details">
+					<div class="profile-title">Change Password</div>
+				</ion-label>
+				<ion-ripple-effect type="bounded"></ion-ripple-effect>
+			</ion-item>
 		<ion-item  button class="profile-menu-item" (click)="logout()" [ngClass]="{'profile-menu-active': activeRoute=='Log Out'}" *ngIf="(isLoggedIn | async)">
 			<ion-icon slot="start" name="log-out"></ion-icon>
 			<ion-label class="profile-details">

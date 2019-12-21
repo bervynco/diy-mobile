@@ -10,6 +10,7 @@ import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ScanComponent } from './scan/scan.component';
 import { RedeemComponent } from './redeem/redeem.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   	// {
@@ -39,18 +40,21 @@ const routes: Routes = [
 
 	},
 	{
+		path: 'me/change-password',
+		component: ChangePasswordComponent
+
+	},
+	{
 		path: 'me/profile-menu',
 		component: ProfileMenuComponent
 	},
 	{
 		path: 'branch',
-		component: BranchComponent,
-		children: [
-			{
-				path: 'branch-summary',
-				component: BranchSummaryComponent
-			}
-		]
+		component: BranchComponent
+	},
+	{
+		path: 'branch/branch-summary/:id',
+		component: BranchSummaryComponent
 	},
 	{
 		path: 'home',

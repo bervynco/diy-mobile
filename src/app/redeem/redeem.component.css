@@ -1,0 +1,61 @@
+#redeem-container {
+    height: calc(100% - 5px);
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+}
+
+#redeem-container > #redeem-header {
+    display: flex;
+    flex: 0 0 200px;
+    justify-content: center;
+    align-items: center;
+}
+#redeem-header > #redeem-wallet {
+    display: flex;
+    flex: 0 0 100px;
+    flex-direction:column;
+    width: 100%;
+    
+}
+
+#redeem-wallet > #redeem-earned {
+    font-size: 56px;
+    font-weight: bolder;
+    color:#EB4E29;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#redeem-wallet > #redeem-subtitle {
+    font-size: 12px;
+    font-weight: light;
+    color: #71737D;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+
+#redeem-body {
+    display: flex;
+    flex: 0 0 200px;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+#redeem-body > ngx-barcode6 {
+    display: flex;
+    flex: 1 0 auto;
+    align-self: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#redeem-body > #redeem-note {
+    font-size: 12px;
+    font-weight: light;
+    color: #71737D;
+}

@@ -18,7 +18,7 @@
 #register-logo {
     width:100%;
     display: flex;
-    flex: 0 0 100px;
+    flex: 0 0 75px;
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
@@ -28,7 +28,7 @@
 #register-form-container > .space-eater {
     display: flex;
     /* flex: 0 0 300px; */
-    flex: 1 0 auto;
+    flex: 0 0 50px;
 }
 
 @media only screen and (max-width: 600px){

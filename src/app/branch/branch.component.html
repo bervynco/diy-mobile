@@ -8,66 +8,24 @@
 		<ion-list-header>
 			<ion-input type="text" placeholder="Search" required="required"></ion-input>
 		</ion-list-header>
-
-		<ion-item button class="navigation-item" (click)="navigate()">
+		<div class="no-data" ng-if="branchList.length == 0">
+			No Data
+		</div>
+		<ion-item button class="navigation-item" (click)="routeBuilder(branch.id)" ng-if="branchList.length > 0" *ngFor="let branch of branchList" >
 			<ion-thumbnail slot="start">
 					<ion-img src="../../assets/placeholder.jpg"></ion-img>
 			</ion-thumbnail>
 			<ion-label class="navigation-details">
 				<div class="navigation-title">DIY Hardware Venice Grand Canal Mall</div>
 				<div class="space-eater"></div>
-				<div class="navigation-subtitle">Garden Villas, 1630 Upper McKinley Road McKinley Hill, Cluster B, Taguig, 1630 Metro Manila</div>
+				<div class="navigation-subtitle">{{branch.address}}</div>
 			</ion-label>
 			<div class="navigation-distance">
-				<div class="navigation-total">20</div>
-				<div class="space-eater"></div>
-				<div class="navigation-unit">km</div>
-			</div>
-			<ion-ripple-effect type="bounded"></ion-ripple-effect>
-		</ion-item>
-
-		<ion-item button class="navigation-item" (click)="navigate()">
-			<ion-thumbnail slot="start">
-				<ion-img src="../../assets/placeholder.jpg"></ion-img>
-			</ion-thumbnail>
-			<ion-label class="navigation-details">
-				<div class="navigation-title">DIY Hardware Venice Grand Canal Mall</div>
-				<div class="space-eater"></div>
-				<div class="navigation-subtitle">Garden Villas, 1630 Upper McKinley Road McKinley Hill, Cluster B, Taguig, 1630 Metro Manila</div>
-			</ion-label>
-			<div class="navigation-distance">
-				<div class="navigation-total">20</div>
-				<div class="space-eater"></div>
-				<div class="navigation-unit">km</div>
-			</div>
-			<ion-ripple-effect type="bounded"></ion-ripple-effect>
-		</ion-item>
-
-		<ion-item button class="navigation-item" (click)="navigate()">
-			<ion-thumbnail slot="start">
-				<ion-img src="../../assets/placeholder.jpg"></ion-img>
-			</ion-thumbnail>
-			<ion-label class="navigation-details">
-				<div class="navigation-title">DIY Hardware Venice Grand Canal Mall</div>
-				<div class="space-eater"></div>
-				<div class="navigation-subtitle">Garden Villas, 1630 Upper McKinley Road McKinley Hill, Cluster B, Taguig, 1630 Metro Manila</div>
-			</ion-label>
-			<div class="navigation-distance">
-				<div class="navigation-total">20</div>
+				<div class="navigation-total">4</div>
 				<div class="space-eater"></div>
 				<div class="navigation-unit">km</div>
 			</div>
 			<ion-ripple-effect type="bounded"></ion-ripple-effect>
 		</ion-item>
 	</ion-list>
-	<!-- <ion-card class="navigation-card">
-		<ion-img src="../../assets/placeholder.jpg" class="navigation-image" (click)="enlargePicture()"></ion-img>
-		<ion-card-header>
-			<ion-card-subtitle class="navigation-title">DIY Hardware Venice Grand Canal Mall</ion-card-subtitle>
-			<ion-card-title></ion-card-title>
-		</ion-card-header>
-		<ion-card-content>
-			Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
-		</ion-card-content>
-	</ion-card> -->
 </ion-content>

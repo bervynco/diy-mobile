@@ -30,6 +30,11 @@ export class ProfileMenuComponent implements OnInit {
 	logout(){
 		this.activeRoute = "Log Out";
 	}
+
+	changePassword() {
+		this.router.navigate(['me/change-password']);
+		this.activeRoute = "Change Password";
+	}
 	login() {
 		this.router.navigate(['me/login']);
 		this.activeRoute = "Log In";

@@ -1,6 +1,6 @@
 #profile-container {
-    height: calc(100vh - 700px);
-    width: 100vw;
+    height: calc(100% - 5px);
+    width: 100%;
     display: flex;
     flex-direction:column;
 }
@@ -9,11 +9,8 @@
     flex-direction:row;
     flex: 0 0 60px;
     border-bottom: 1px solid rgb(220,220,220);
+    box-shadow: 0 0 8px rgba(0,0,0,0.20);
 }
-#profile-container > #profile-body {
-
-}
-
 
 #profile-container > #profile-login {
     display: flex;
@@ -65,11 +62,43 @@
     justify-content: center;
 }
 
-
-
 #setting-button {
     --ripple-color: transparent;
     --color-focused: transparent;
 }
 
+#profile-container > #profile-body {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction:column;
+    /* padding-top: 10px; */
+    padding: 10px 5px 10px 5px;
+}
 
+#profile-body > #profile-wallet {
+    display: flex;
+    flex: 0 0 200px;
+    flex-direction:column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#profile-wallet > #points-earned {
+    font-size: 56px;
+    font-weight: bolder;
+    color:#EB4E29;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#profile-wallet > #points-subtitle {
+    font-size: 12px;
+    font-weight: light;
+    color: #71737D;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
