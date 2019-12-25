@@ -2,15 +2,7 @@
     display: none;
 }
 
-.qr-scanner-open > ion-app, .qr-scanner-open > ion-content {
-    height: 70px !important;
-    --overflow: hidden !important;
-}
-
-.qr-scanner-open > #close-scanner-button {
-    display: block;
-}
-
-ion-content > *:not(#close-scanner-button) {
-    display: none;
-}
+.transparent-body {
+    background: none transparent !important;
+    opacity: 0 !important;
+  }

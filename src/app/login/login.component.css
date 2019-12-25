@@ -160,3 +160,8 @@ input::-webkit-input-placeholder
 /*background: linear-gradient(to right, #eb4e29 0%,#ffa73d 100%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eb4e29', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
 
+
+.margin-class {
+    margin-top:10px;
+    margin-bottom: 10px;
+}

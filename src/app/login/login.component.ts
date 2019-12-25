@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
   	ngOnInit() {
 		
 		this.loginForm = this.formBuilder.group({
-			email: new FormControl('jaaustria20@gmail.com', [
+			email: new FormControl('bervyn_co2010@yahoo.com', [
 				Validators.required
 			]),
-			password: new FormControl('qwerty', [
+			password: new FormControl('Password01!', [
 				Validators.required
 			]),
 
@@ -86,8 +86,8 @@ export class LoginComponent implements OnInit {
 		this.Login.login(details).subscribe(
 			(res:any)=>{
 				this.createToast("Login complete", 200, "bottom");
-				this.authService.setStorage("auth", res);
-				this.authService.login();
+				// this.authService.setStorage("auth", res);
+				this.authService.login(res);
 				this.createToast("Login successful",200, "bottom");
 				this.router.navigate(['/me']);
 				this.hideLoader();
@@ -102,7 +102,6 @@ export class LoginComponent implements OnInit {
 				// 	// console.log("Complete");
 				// }
 			},(err) => {
-				this.createAlert("Login failed", "The email address or password entered is incorrect");
 				this.hideLoader();
 			}
 		);

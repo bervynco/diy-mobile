@@ -11,7 +11,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class SignUpComponent implements OnInit {
 	registerForm:FormGroup;
-	constructor(private formBuilder: FormBuilder, public alertController: AlertController, public Register: DataService) {
+	holdForm:boolean = false;
+	constructor(private formBuilder: FormBuilder, public alertController: AlertController, public dataService: DataService) {
 		this.registerForm = this.formBuilder.group({
 			email: new FormControl('', [
 				Validators.required
@@ -38,6 +39,12 @@ export class SignUpComponent implements OnInit {
 	}
 	
 	register() {
+		this.holdForm = true;
+		let user = this.registerForm.value;
+		console.log(user);
+		// this.dataService.registerUser() {
+
+		// }
 		///api/v1/users/register
 	}
 	ngOnInit() {}

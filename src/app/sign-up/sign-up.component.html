@@ -18,22 +18,28 @@
 		<div id="register-form">
 			<form [formGroup]="registerForm" (submit)="register()">
 				<ion-item>
-					<ion-input type="email" placeholder="Email Address"></ion-input>
+					<ion-input type="email" placeholder="Email Address" required="required" formControlName="email"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-input type="text" placeholder="First Name"></ion-input>
+					<ion-input type="text" placeholder="First Name" required="required" formControlName="firstName"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-input type="text" placeholder="Last Name"></ion-input>
+					<ion-input type="text" placeholder="Last Name" required="required" formControlName="lastName"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-input type="password" placeholder="Password"></ion-input>
+					<ion-input type="text" placeholder="City" required="required" formControlName="city"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="text" placeholder="Contact Number" required="required" formControlName="contactNumber"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" placeholder="Password" required="required" formControlName="password"></ion-input>
 				</ion-item>
 				<ion-item>
 					<ion-input type="password" placeholder="Confirm Password"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-datetime displayFormat="MMMM DD YYYY" placeholder="Birthday"></ion-datetime>
+					<ion-datetime displayFormat="MMMM DD YYYY" required="required" placeholder="Birthday" formControlName="birthday"></ion-datetime>
 				</ion-item>
 				<button type="submit" class="submit-button" [disabled]="!registerForm.valid">Create Account </button>
 						<!-- <div class="input-group">

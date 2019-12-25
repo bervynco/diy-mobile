@@ -17,7 +17,8 @@
 					<ion-item>
 						<ion-input type="password" placeholder="Password" required="required" formControlName="password"></ion-input>
 					</ion-item>
-					<button type="submit" class="submit-button" [disabled]="!loginForm.valid">Login </button>
+					<div class="space-eater"></div>
+					<button type="submit" class="submit-button margin-class" [disabled]="!loginForm.valid">Login </button>
 					<a routerLink="/forgot-password" class="login-hyperlink"> Forgot your Password?  Reset it </a>
 				</div>
 			</form>

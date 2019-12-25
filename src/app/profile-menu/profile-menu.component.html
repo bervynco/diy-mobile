@@ -10,14 +10,14 @@
 </ion-header>
 <ion-content fullscreen>
 	<ion-list>
-		<ion-item  button class="profile-menu-item" (click)="login()" [ngClass]="{'profile-menu-active': activeRoute=='Log In'}" *ngIf="!(isLoggedIn | async)">
+		<ion-item  button class="profile-menu-item" (click)="login()" [ngClass]="{'profile-menu-active': activeRoute=='Log In'}" *ngIf="!(isLoggedIn)">
 			<ion-icon slot="start" name="log-in"></ion-icon>
 			<ion-label class="profile-details">
 				<div class="profile-title">Login</div>
 			</ion-label>
 			<ion-ripple-effect type="bounded"></ion-ripple-effect>
 		</ion-item>
-		<ion-item button class="profile-menu-item" [ngClass]="{'profile-menu-active': activeRoute=='Update'}" *ngIf="(isLoggedIn | async)">
+		<ion-item button class="profile-menu-item" [ngClass]="{'profile-menu-active': activeRoute=='Update'}" *ngIf="(isLoggedIn)">
 			<ion-icon slot="start" name="person"></ion-icon>
 			<ion-label class="profile-details">
 				<div class="profile-title">Update Personal Information</div>
@@ -38,14 +38,14 @@
 			</ion-label>
 			<ion-ripple-effect type="bounded"></ion-ripple-effect>
 		</ion-item>
-		<ion-item  button class="profile-menu-item" (click)="changePassword()" [ngClass]="{'profile-menu-active': activeRoute=='Change Password'}" *ngIf="(isLoggedIn | async)">
+		<ion-item  button class="profile-menu-item" (click)="changePassword()" [ngClass]="{'profile-menu-active': activeRoute=='Change Password'}" *ngIf="(isLoggedIn)">
 				<ion-icon slot="start" name="lock"></ion-icon>
 				<ion-label class="profile-details">
 					<div class="profile-title">Change Password</div>
 				</ion-label>
 				<ion-ripple-effect type="bounded"></ion-ripple-effect>
 			</ion-item>
-		<ion-item  button class="profile-menu-item" (click)="logout()" [ngClass]="{'profile-menu-active': activeRoute=='Log Out'}" *ngIf="(isLoggedIn | async)">
+		<ion-item  button class="profile-menu-item" (click)="logout()" [ngClass]="{'profile-menu-active': activeRoute=='Log Out'}" *ngIf="(isLoggedIn)">
 			<ion-icon slot="start" name="log-out"></ion-icon>
 			<ion-label class="profile-details">
 				<div class="profile-title">Logout</div>

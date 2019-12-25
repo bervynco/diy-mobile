@@ -170,7 +170,7 @@ ion-datetime {
 .submit-button {
     position: relative;
     height: 40px;
-    margin: 10px 7px;
+    // margin: 10px 7px;
     padding: 5px 5px;
     font-weight: bolder;
     font-size: 15px;
@@ -243,4 +243,14 @@ ion-datetime {
     background-color: gray;
     color: white;
     transition: none !important;
+}
+
+.green-text {
+    color: var(--ion-color-success);
+    font-weight: bolder;
+}
+
+.red-text {
+    color:  var(--ion-color-danger);
+    font-weight: bolder;
 }

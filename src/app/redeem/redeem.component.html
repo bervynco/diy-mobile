@@ -12,12 +12,7 @@
 			</div>
 		</div>
 		<div id="redeem-body">
-			<ngx-barcode6
-				[bc-format]="'MSI'"
-				[bc-value]="'12345678901231'"
-				[bc-display-value]="true"
-			  >
-			</ngx-barcode6>
+			<ngx-qrcode [qrc-value]="encodedData" [qrc-version]="6"></ngx-qrcode>
 			<div id="redeem-note">Please present this code to the cashier for the transaction.</div> 
 		</div>
 	</div>

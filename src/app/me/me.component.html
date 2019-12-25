@@ -3,8 +3,8 @@
 		<div id="profile-header">
 			<div id="space-eater"></div>
 			<div id="profile-account">
-				<div id="profile-name" *ngIf="isLoggedIn == true | async">Bervyn Co </div>
-				<div id="profile-email" *ngIf="isLoggedIn == true | async">bervynco@gmail.com</div>
+				<div id="profile-name" *ngIf="isLoggedIn == true">Bervyn Co </div>
+				<div id="profile-email" *ngIf="isLoggedIn == true">{{userProfile.email}}</div>
 			</div>
 			<div id="profile-settings">
 				<ion-button fill="clear" id="setting-button" [routerLink]="['/me/profile-menu']">
@@ -12,195 +12,37 @@
 				</ion-button>
 			</div>
 		</div>
-		<div id="profile-body" *ngIf="isLoggedIn | async">
+		<div id="profile-body" *ngIf="isLoggedIn">
 			<div id="profile-wallet">
 				<div id="points-earned"> 5000 </div>
 				<div id="points-subtitle">points earned</div>
 			</div>
 			<div id="profile-transactions">
-				<ion-item button class="transaction-item" >
+				<ion-item button class="transaction-item" *ngFor="let history of walletHistory" >
 					<ion-thumbnail slot="start">
 						<ion-img src="../../assets/placeholder.jpg"></ion-img>
 					</ion-thumbnail>
 					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
+						<div class="transaction-title green-text" *ngIf="history.amount > 0">Earn</div>
+						<div class="transaction-title red-text" *ngIf="history.amount < 0">Redeem</div>
 						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
+						<div class="transaction-subtitle"> {{history.date}}</div>
 					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
+					<div class="transaction-points-summary">
+						<div class="transaction-summary">
+							<ion-icon name="arrow-dropup" color="success" *ngIf="history.amount > 0"></ion-icon>
+							<ion-icon name="arrow-dropdown" color="danger" *ngIf="history.amount < 0"></ion-icon>
+						</div>
 						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
-					</div>
-				</ion-item>
-				<ion-item button class="transaction-item" >
-					<ion-thumbnail slot="start">
-						<ion-img src="../../assets/placeholder.jpg"></ion-img>
-					</ion-thumbnail>
-					<ion-label class="transaction-details">
-						<div class="transaction-title">Reward points</div>
-						<div class="space-eater"></div>
-						<div class="transaction-subtitle"> December 5, 2019</div>
-					</ion-label>
-					<div class="navigation-distance">
-						<div class="navigation-total">5</div>
-						<div class="space-eater"></div>
-						<div class="navigation-unit">points</div>
+						<div class="transaction-points">
+							<div class="transaction-total green-text" *ngIf="history.amount > 0">{{history.amount}}</div>
+							<div class="transaction-total red-text" *ngIf="history.amount < 0">{{history.amount}}</div>
+						</div>
 					</div>
 				</ion-item>
 			</div>
 		</div>
-		<div id="profile-login" *ngIf="!(isLoggedIn | async)">
+		<div id="profile-login" *ngIf="!(isLoggedIn)">
 			<ion-button color="primary" [routerLink]="['/me/login']">Sign up or Login</ion-button>
 		</div>
 	</div>

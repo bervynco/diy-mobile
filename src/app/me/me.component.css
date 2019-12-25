@@ -102,3 +102,50 @@
     justify-content: center;
     align-content: center;
 }
+
+.transaction-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-details > .transaction-title {
+    font-size: 16px;
+}
+
+.transaction-details > .space-eater {
+    display: flex;
+    flex: 0 0 5px;
+}
+.transaction-details > .transaction-subtitle {
+    color: #71737D;
+    font-size: 12px;
+}
+
+.transaction-points-summary {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 100px;
+}
+
+.transaction-points-summary > .space-eater {
+    display: flex;
+    flex: 0 0 10px;
+}
+.transaction-points {
+    display: flex;
+}
+
+.transaction-summary {
+    display: flex;
+}
+.transaction-points-summary > .transaction-points > .transaction-title {
+    font-size: 16px;
+}
+.transaction-points-summary > .transaction-points > .space-eater {
+    display: flex;
+    flex: 0 0 5px;
+}
+.transaction-points-summary > .transaction-points > .transaction-subtitle {
+    color: #71737D;
+    font-size: 12px;
+}

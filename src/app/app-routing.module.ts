@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ScanComponent } from './scan/scan.component';
 import { RedeemComponent } from './redeem/redeem.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { IntroComponent } from './intro/intro.component';
 
 const routes: Routes = [
   	// {
@@ -22,56 +23,19 @@ const routes: Routes = [
 		redirectTo: '/home', 
 		pathMatch: 'full' 
 	},
-	{
-		path: 'login',
-		component: LoginComponent
-	},
-	{
-		path: 'me',
-		component: MeComponent
-	},
-	{
-		path:'me/login',
-		component: LoginComponent
-	},
-	{
-		path: 'me/create-account',
-		component: SignUpComponent
-
-	},
-	{
-		path: 'me/change-password',
-		component: ChangePasswordComponent
-
-	},
-	{
-		path: 'me/profile-menu',
-		component: ProfileMenuComponent
-	},
-	{
-		path: 'branch',
-		component: BranchComponent
-	},
-	{
-		path: 'branch/branch-summary/:id',
-		component: BranchSummaryComponent
-	},
-	{
-		path: 'home',
-		component: HomeComponent
-	},
-	{
-		path: 'welcome',
-		component: WelcomeComponent
-	},
-	{
-		path: 'scan',
-		component: ScanComponent
-	},
-	{
-		path: 'redeem',
-		component: RedeemComponent
-	},
+	{ path: 'login', component: LoginComponent },
+	{ path: 'me', component: MeComponent },
+	{ path:'me/login', component: LoginComponent },
+	{ path: 'me/create-account', component: SignUpComponent },
+	{ path: 'me/change-password', component: ChangePasswordComponent },
+	{ path: 'me/profile-menu', component: ProfileMenuComponent },
+	{ path: 'branch', component: BranchComponent },
+	{ path: 'branch/branch-summary/:id', component: BranchSummaryComponent },
+	{ path: 'home', component: HomeComponent },
+	{ path: 'welcome', component: WelcomeComponent },
+	{ path: 'scan', component: ScanComponent },
+	{ path: 'redeem', component: RedeemComponent },
+	{ path: 'intro', component: IntroComponent}
 	
 ];
 @NgModule({

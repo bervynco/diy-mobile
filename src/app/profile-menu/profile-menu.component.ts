@@ -9,14 +9,12 @@ import { Router } from '@angular/router';
 })
 export class ProfileMenuComponent implements OnInit {
 	activeRoute:String = "";
-	isLoggedIn : Observable<boolean>;
+	isLoggedIn:boolean = false;
+	// isLoggedIn : Observable<boolean>;
   	constructor(private router: Router, private authService: AuthService) {
-		  this.loadStorage();
+		  this.checkIfAuthenticated();
 	}
 	
-	async loadStorage() {
-		this.isLoggedIn = this.authService.isLoggedIn();
-	}
 
 	ngOnInit() {}
 	viewTerms() {
@@ -29,6 +27,9 @@ export class ProfileMenuComponent implements OnInit {
 	
 	logout(){
 		this.activeRoute = "Log Out";
+		this.router.navigate(['home']);
+		this.authService.authState.next(false);
+		this.authService.logout();
 	}
 
 	changePassword() {
@@ -38,5 +39,11 @@ export class ProfileMenuComponent implements OnInit {
 	login() {
 		this.router.navigate(['me/login']);
 		this.activeRoute = "Log In";
+	}
+
+	checkIfAuthenticated() {
+		this.authService.authState.subscribe(state => {
+			this.isLoggedIn = state;
+		});
 	}
 }

@@ -29,19 +29,25 @@ export class Interceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        // YOU CAN ALSO DO THIS
-        // const token = this.authenticationService.getToke()
         request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
         request = request.clone({ headers: request.headers.set("Access-Control-Allow-Origin", "*") });
         request = request.clone({ headers: request.headers.set('Access-Control-Allow-Headers', "Origin, Authorization, Content-Type, Accept") });
         
-        if(request.url.search('wallet') > 0 ){
-            console.log("Interceptor Enabled");
+        if(request.url.search('me') > 0 || request.url.search('refreshtoken') > 0){
             return from(this.storage.get(TOKEN_KEY))
             .pipe(
                 switchMap(token => {
                     if (token) {
-                        request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.accessToken) });
+                        if(request.url.search('refreshtoken') > 0){
+                            console.log("Refresh token");
+                            console.log(token.refreshToken);
+                            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.refreshToken) });
+                        }
+                        else {
+                            console.log("Access token");
+                            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.accessToken) });
+                        }
+                       
                     }
 
                     return next.handle(request).pipe(
@@ -52,31 +58,52 @@ export class Interceptor implements HttpInterceptor {
                             return event;
                         }),
                         catchError((error: HttpErrorResponse) => {
-                            const status =  error.status;
-                            const reason = error && error.error.reason ? error.error.reason : '';
-                            return throwError(error);
+                            let returnError = "";
+                            if(error.error.data){
+                                returnError = error.error.data;
+                            }
+                            else {
+                                returnError = error.error.message;
+                            }
+                            console.log(returnError);
+                            this.createAlert("Error", returnError);
+                            // const status =  error.status;
+                            // const reason = error && error.error.data ? error.error.data : status;
+                            return throwError(returnError);
                         })
                     );
                 })
             );
         }
         else{
-            console.log("Interceptor Disabled");
-            return next.handle(request);
+            return next.handle(request).pipe(
+                map((event: HttpEvent<any>) => {
+                    if (event instanceof HttpResponse) {
+                        // do nothing for now
+                    }
+                    return event;
+                }),
+                catchError((error: HttpErrorResponse) => {
+                    let returnError = "";
+                    if(error.error.data){
+                        returnError = error.error.data;
+                    }
+                    else {
+                        returnError = error.error.message;
+                    }
+                    this.createAlert("Error", returnError);
+                    return throwError(returnError);
+                })
+            );
         }
-        
-
-
     }
-
-    async presentAlert(status, reason) {
-        const alert = await this.alertController.create({
-            header: status + ' Error',
-            subHeader: 'Subtitle',
-            message: reason,
-            buttons: ['OK']
-        });
-
-        await alert.present();
-    }
+    async createAlert(header, message){
+		const alert = await this.alertController.create({
+			header: header,
+			message: message,
+			buttons: ['OK']
+		});
+	
+		await alert.present();
+	}
 }

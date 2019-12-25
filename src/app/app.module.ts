@@ -9,10 +9,13 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { AppRoutingModule } from './app-routing.module';
-import { NgxBarcode6Module } from 'ngx-barcode6';
 
 import { AppComponent } from './app.component';
+import { IntroComponent } from './intro/intro.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BranchComponent } from './branch/branch.component';
@@ -24,11 +27,15 @@ import { HomeComponent } from './home/home.component';
 import { RedeemComponent } from './redeem/redeem.component';
 import { ScanComponent } from './scan/scan.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { Interceptor } from './interceptor';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AuthService } from './auth.service';
+
+
 @NgModule({
 	declarations: [
 		AppComponent,
+		IntroComponent,
 		LoginComponent,
 		SignUpComponent,
 		BranchComponent,
@@ -39,7 +46,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 		HomeComponent,
 		ScanComponent,
 		RedeemComponent,
-		ChangePasswordComponent
+		ChangePasswordComponent,
+		ResetPasswordComponent
 	],
 	entryComponents: [],
 	imports: [
@@ -50,14 +58,17 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
         FormsModule,
 		HttpClientModule,
 		IonicStorageModule.forRoot(),
-		NgxBarcode6Module
+		NgxQRCodeModule
+		
 	],
 	providers: [
 		StatusBar,
 		SplashScreen,
 		LaunchNavigator,
 		QRScanner,
+		BarcodeScanner,
 		Geolocation,
+		AuthService,
 		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
 		{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }  
 	],

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
+import { User } from '../interface/User';
+
+import * as jwt_decode from 'jwt-decode';
 @Component({
 	selector: 'app-me',
 	templateUrl: './me.component.html',
@@ -10,26 +12,34 @@ import { Observable } from 'rxjs';
 })
 export class MeComponent implements OnInit {
 	token:String = "";
-	isLoggedIn : Observable<boolean>;
-	loginStatus:boolean = false;
+	isLoggedIn:boolean = false;
+	walletHistory;
+	userProfile:User = {'name': "", 'email': ""};
 	constructor(private router: Router, private authService: AuthService, private dataService: DataService) {
-		this.loadStorage();
+		// this.loadStorage();
+		this.checkIfAuthenticated();
 	}
 
 	ngOnInit() {
 		
 	}
 
-	async loadStorage() {
-		await this.authService.isLoggedIn().subscribe((loginStatus)=>{
-			console.log(loginStatus);
-			this.loginStatus = loginStatus;
+	populateProfile() {
+		this.authService.getToken().then(response => {
+			var decoded = jwt_decode(response.accessToken);
+			this.userProfile.email = decoded.email;
+			this.userProfile.name = "Bervyn Co";
+			
 		});
-		console.log(this.loginStatus);
-		this.getWalletDetails();
-		// if(this.loginStatus == true){
-		// 	this.getWalletDetails();
-		// }
+	}
+	checkIfAuthenticated() {
+		this.authService.authState.subscribe(state => {
+			if(state == true){
+				this.populateProfile();
+				this.getWalletDetails();
+			}
+			this.isLoggedIn = state;
+		});
 	}
 
 	viewMenu() {
@@ -39,17 +49,17 @@ export class MeComponent implements OnInit {
 	getWalletDetails() {
 		this.dataService.getWalletDetails().subscribe(
 			(res:any)=>{
-				console.log(res);
-				// this.createToast("Login complete", 200, "bottom");
-				// this.authService.setStorage("auth", res);
-				// this.authService.login();
-				// this.createToast("Login successful",200, "bottom");
-				// this.router.navigate(['/me']);
-				// this.hideLoader();
-				// }
+				this.walletHistory = res.body[0].history;
 			},(err) => {
-				// this.createAlert("Login failed", "The email address or password entered is incorrect");
-				// this.hideLoader();
+				this.dataService.refreshToken().subscribe(
+					(res:any)=>{
+						console.log(res);
+					},(err) => {
+						this.dataService.refreshToken();
+						console.log(err);
+					}
+				);
+				console.log(err);
 			}
 		);
 	}

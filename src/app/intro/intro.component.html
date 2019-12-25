@@ -1,0 +1,22 @@
+<ion-content fullscreen>
+	<ion-slides pager="true" [options]="slideOptsOne" #slideWithNav
+		(ionSlideDidChange)="SlideDidChange(slideWithNav)">
+		<ion-slide *ngFor="let number of [1,2,3,4]" >
+			<div class="slide-page">
+				<img src="../../assets/slideshow/slide-{{number}}.jpg" class="image-height">
+				<div *ngIf="shouldLoad == true" class="intro-card">
+					<div class="space-eater"></div>
+					<div class="content">
+						<div class="title">{{currentContent.title}}</div>
+						<div class="space-eater"></div>
+						<div class="subtitle">{{currentContent.subtitle}}</div>
+						<div class="space-eater" *ngIf="number == 4"></div>
+						<div class="content-button-container" *ngIf="number == 4">
+							<button (click)="completeIntro()" class="submit-button"> Get Started</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+</ion-content>

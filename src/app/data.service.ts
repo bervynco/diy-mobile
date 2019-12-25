@@ -8,10 +8,10 @@ import { AuthService } from './auth.service';
 })
 export class DataService {
 	token = "";
-	DEV_BASE_PATH = 'http://localhost:3494/api/v1/';
+	DEV_BASE_PATH = 'http://localhost:10010/api/v1/';
 	PROD_BASE_PATH = 'https://diy-platform-backend.herokuapp.com/api/v1/';
+	BASE_PATH = this.DEV_BASE_PATH;
 	// token = localStorage.getItem("auth");
-	headers = new HttpHeaders;
   
   	constructor(private http: HttpClient, private authService: AuthService) {
 		// this.authService.getStorage("auth").then(function(token){
@@ -24,16 +24,25 @@ export class DataService {
 		// this.headers = this.headers.append("Access-Control-Allow-Headers", "Origin, Authorization, Content-Type, Accept");
 	}
 	
-	public getToken() {
-		return localStorage.getItem("auth");
-	}
     private handleError(error: HttpErrorResponse) {
         return throwError(error.status + ': ' + error.statusText);
     };
-  
+	
+	/* Refresh token */
+	refreshToken() {
+		var output = this.http.post(this.BASE_PATH + 'users/refreshtoken', {
+			observe: 'response'
+		}).pipe(
+		// retry(3),  // if (error) => retry 'n' times
+		catchError(this.handleError)
+		);
+		return output;
+	}
+
+	/* End of refresh token */
   	/* Login Component */
   	login(details) {
-		var output = this.http.post(this.PROD_BASE_PATH + 'users/login', {
+		var output = this.http.post(this.BASE_PATH + 'users/login', {
 			observe: 'response',
 			email: details.email,
 			password: details.password
@@ -48,8 +57,7 @@ export class DataService {
 
 	registerUser(details) {
 		//httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
-		var output = this.http.post(this.PROD_BASE_PATH + 'users/appusers', details, {
-			headers: this.headers
+		var output = this.http.post(this.BASE_PATH + 'users/appusers', details, {
 		}).pipe(
 		// retry(3),  // if (error) => retry 'n' times
 		catchError(this.handleError)
@@ -58,11 +66,10 @@ export class DataService {
 	}
 
 	/* End of user Management */
-	/* Wallet */
+	/* Me */
 	getWalletDetails() {
-		var output = this.http.get(this.PROD_BASE_PATH + 'wallet/me', {
-			observe: 'response',
-			headers: this.headers
+		var output = this.http.get(this.BASE_PATH + 'wallet/me', {
+			observe: 'response'
 		}).pipe(
 		// retry(3),  // if (error) => retry 'n' times
 		catchError(this.handleError)
@@ -70,11 +77,22 @@ export class DataService {
 		return output;
 	}
 	
-	/* End of Wallet */
+	changePassword(passwordDetails) {
+		var output = this.http.post(this.BASE_PATH + 'users/me/changepassword', {
+			observe: 'response',
+			currentPassword: passwordDetails.currentPassword,
+			newPassword: passwordDetails.newPassword
+		}).pipe(
+		// retry(3),  // if (error) => retry 'n' times
+		catchError(this.handleError)
+		);
+		return output;
+	}
+	/* End of Me */
 
 	/* Branch */
 	getBranchNearby(coords) {
-		var output = this.http.post(this.PROD_BASE_PATH + 'store/nearby', {
+		var output = this.http.post(this.BASE_PATH + 'store/nearby', {
 			observe: 'response',
 			longitude: coords.longitude,
 			latitude: coords.latitude
@@ -86,7 +104,7 @@ export class DataService {
 	}
 
 	getBranchDetails(id) {
-		var output = this.http.get(this.PROD_BASE_PATH + 'store/branch/' + id, {
+		var output = this.http.get(this.BASE_PATH + 'store/branch/' + id, {
 			observe: 'response'
 		}).pipe(
 		// retry(3),  // if (error) => retry 'n' times
@@ -94,4 +112,5 @@ export class DataService {
 		);
 		return output;
 	}
+	/* End of branch */
 }
