@@ -1,0 +1,177 @@
+/* .slide-page {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin: 0px;
+    position:relative;
+}
+.intro-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    padding: 50px;
+}
+
+.intro-card > .space-eater {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.intro-card > .content {
+    display: flex;
+    flex: 0 0 300px;
+    flex-direction: column;
+}
+.intro-card > .content > .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.8);
+}
+
+.intro-card > .content > .space-eater {
+    display: flex;
+    flex: 0 0 25px;
+}
+.intro-card > .content > .subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+}
+
+.intro-card > .content > .content-button-container {
+    display: flex;
+    flex: 0 0 25px;
+}
+
+.image-height {
+    height: 100vh;
+} */
+.home-container {
+    display: flex;
+    flex-direction:column;
+}
+.home-container > .promo-me-header {
+    display: flex;
+    flex: 0 0 50px;
+    align-items: center;
+}
+.home-container > .promo-me-header > .header {
+    font-size: 16px;
+    color: black;
+    font-weight: bolder;
+}
+.home-container > .promo-me-container {
+    height: 200px;
+    width: 100%;
+    /* background-color: green; */
+    overflow: hidden; 
+    white-space: nowrap;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+}
+.home-container > .promo-me-container::-webkit-scrollbar {
+    display: none;
+}
+
+.promo-card-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.promo-card-container > .promo-card {
+    display: flex;
+    flex-direction: column;
+    width: 175px;
+    /* background-color: green; */
+    flex: 0 0 calc(100% - 10px);
+    border-radius: 5px;
+}
+
+.promo-card > #promo-image-container {
+    display: flex;
+    flex: 0 0 80%;
+    width: 100%;
+
+}
+
+.promo-card > #promo-details-container {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    font-size: 12px;
+}
+
+.promo-card-container > .space-eater {
+    display: flex;
+    width: 10px;
+}
+
+.home-container > .promo-advertisement-header {
+    display: flex;
+    flex: 0 0 50px;
+    align-items: center;
+}
+.home-container > .promo-advertisement-header > .header {
+    font-size: 16px;
+    color: black;
+    font-weight: bolder;
+}
+.home-container > .promo-advertisement-container {
+    height: 100%;
+    width: 100%;
+    /* background-color: green; */
+    overflow: hidden; 
+    white-space: nowrap;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.promo-advertisement-container > .advertisement-card-container {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 400px){
+    .promo-advertisement-container > .advertisement-card-container {
+        display: flex;
+        flex-direction: column;
+        height: 250px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .promo-advertisement-container > .advertisement-card-container {
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+        width: 100%;
+    }
+}
+
+.promo-advertisement-container > .advertisement-card-container > .advertisement-card {
+    display: flex;
+    flex-direction: row;
+    /* background-color: green; */
+    flex: 0 0 calc(100% - 10px);
+    border-radius: 5px;
+    /* width: 100%; */
+}
+.promo-advertisement-container > .advertisement-card-container > .space-eater {
+    display: flex;
+    flex-direction: column;
+    height: 10px;
+}
+
+.advertisement-card > #advertisement-image-container {
+    display: flex;
+    width: 100%;
+    /* width: 100%; */
+}

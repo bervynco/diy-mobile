@@ -1,3 +1,119 @@
-<p>
-  home works!
-</p>
+<!-- <ion-content fullscreen>
+	<ion-slides pager="true" [options]="slideOptsOne" #slideWithNav
+		(ionSlideDidChange)="SlideDidChange(slideWithNav)">
+		<ion-slide *ngFor="let number of [1,2,3,4]" >
+			<div class="slide-page">
+				<img src="../../assets/slideshow/slide-{{number}}.jpg" class="image-height">
+				<div *ngIf="shouldLoad == true" class="intro-card">
+					<div class="space-eater"></div>
+					<div class="content">
+						<div class="title">{{currentContent.title}}</div>
+						<div class="space-eater"></div>
+						<div class="subtitle">{{currentContent.subtitle}}</div>
+						<div class="space-eater" *ngIf="number == 4"></div>
+						<div class="content-button-container" *ngIf="number == 4">
+							<button (click)="completeIntro()" class="submit-button"> Get Started</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+</ion-content> -->
+
+<ion-content fullscreen padding>
+	<div class="home-container">
+		<div class="promo-me-header">
+			<div class="header">Top Picks</div>
+		</div>
+		<div class="promo-me-container">
+			<div class="promo-card-container" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
+				<div class="promo-card">
+					<div id="promo-image-container">
+						<img src="../../assets/placeholder.jpg">
+					</div>
+					<div id="promo-details-container">
+						Untitled
+					</div>
+				</div>
+				<div class="space-eater"></div>
+			</div>
+		</div>
+		<div class="promo-advertisement-header">
+			<div class="header">Check out exclusive deals below!</div>
+		</div>
+		<div class="promo-advertisement-container">
+			<div class="advertisement-card-container" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
+				<div class="advertisement-card">
+					<div id="advertisement-image-container">
+						<img src="../../assets/placeholder.jpg">
+					</div>
+				</div>
+				<div class="space-eater"></div>
+			</div>
+		</div>
+	</div>
+</ion-content>
+
+<!-- Skeleton screen -->
+<!-- <div *ngIf="!data">
+	<div class="ion-padding custom-skeleton">
+	  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+	  <ion-skeleton-text animated></ion-skeleton-text>
+	  <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+	  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+	  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+	</div>
+  
+	<ion-list>
+	  <ion-list-header>
+		<ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+	  </ion-list-header>
+	  <ion-item>
+		<ion-avatar slot="start">
+		  <ion-skeleton-text animated></ion-skeleton-text>
+		</ion-avatar>
+		<ion-label>
+		  <h3>
+			<ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+		  </h3>
+		  <p>
+			<ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+		  </p>
+		  <p>
+			<ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+		  </p>
+		</ion-label>
+	  </ion-item>
+	  <ion-item>
+		<ion-thumbnail slot="start">
+		  <ion-skeleton-text animated></ion-skeleton-text>
+		</ion-thumbnail>
+		<ion-label>
+		  <h3>
+			<ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+		  </h3>
+		  <p>
+			<ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+		  </p>
+		  <p>
+			<ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+		  </p>
+		</ion-label>
+	  </ion-item>
+	  <ion-item>
+		<ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+		<ion-label>
+		  <h3>
+			<ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+		  </h3>
+		  <p>
+			<ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+		  </p>
+		  <p>
+			<ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+		  </p>
+		</ion-label>
+	  </ion-item>
+	</ion-list>
+  </div> -->

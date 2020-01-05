@@ -1,6 +1,6 @@
 <ion-content fullscreen>
 	<ion-slides pager="true" [options]="slideOptsOne" #slideWithNav
-		(ionSlideDidChange)="SlideDidChange(slideWithNav)">
+		(ionSlideWillChange)="SlideDidChange(slideWithNav)">
 		<ion-slide *ngFor="let number of [1,2,3,4]" >
 			<div class="slide-page">
 				<img src="../../assets/slideshow/slide-{{number}}.jpg" class="image-height">

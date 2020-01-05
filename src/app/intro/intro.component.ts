@@ -22,7 +22,9 @@ export class IntroComponent implements OnInit {
 		this.storage.get('first_time').then((val) => {
 			if (val === null) {
 				this.populateIntroContent();
-				
+			}
+			else {
+				this.router.navigate(['home']);
 			}
 		});
 	}
