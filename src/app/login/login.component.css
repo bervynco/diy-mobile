@@ -129,6 +129,7 @@
     color: rgb(120,120,120);
     cursor:pointer;
     justify-content: center;
+    cursor: pointer;
 }
 .create-hyperlink {
     display: flex;

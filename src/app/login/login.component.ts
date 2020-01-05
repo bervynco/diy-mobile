@@ -6,7 +6,6 @@ import { AlertController, ToastController, LoadingController } from '@ionic/angu
 
 
 import { AuthService } from '../auth.service';
-import { MeComponent } from '../me/me.component';
 @Component({
 	  selector: 'login',
 	  templateUrl: './login.component.html',

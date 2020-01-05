@@ -13,13 +13,15 @@
 				<div id="form-container">
 					<ion-item>
 						<ion-input type="email" placeholder="Email Address" required="required" formControlName="email"></ion-input>
+						<ion-icon name="mail" slot="start"></ion-icon>
 					</ion-item>
 					<ion-item>
 						<ion-input type="password" placeholder="Password" required="required" formControlName="password"></ion-input>
+						<ion-icon name="lock" slot="start"></ion-icon>
 					</ion-item>
 					<div class="space-eater"></div>
 					<button type="submit" class="submit-button margin-class" [disabled]="!loginForm.valid">Login </button>
-					<a routerLink="/forgot-password" class="login-hyperlink"> Forgot your Password?  Reset it </a>
+					<a routerLink="/me/reset-password" class="login-hyperlink"> Forgot your Password?  Reset it </a>
 				</div>
 			</form>
 		</div>
