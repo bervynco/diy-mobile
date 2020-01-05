@@ -1,0 +1,122 @@
+.contact-form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+}
+
+#contact-us-container {
+    height: calc(100vh - 700px);
+    width: 100vw;
+    display: flex;
+    flex-direction:column;
+    align-content:space-around;
+}
+#contact-us-logo {
+    width:100%;
+    display: flex;
+    flex: 0 0 100px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    /* justify-content: flex-end; */
+}
+#contact-us-form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    align-items: center;
+    overflow:hidden;
+}
+
+@media only screen and (max-width: 600px){
+    #contact-us-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 250px;
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 600px){
+    #contact-us-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 350px;
+        width: 100%;
+    }
+}
+
+/* @media only screen and (max-width: 600px){
+    #contact-us-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 300px
+    }
+} */
+
+
+@media only screen and (min-width: 768px){
+    #contact-us-form > form {
+        display: flex; 
+        flex-direction: column;
+        flex: 0 0 450px;
+        width: 100%;
+    }
+}
+
+#contact-us-form-container > .space-eater {
+    display: flex;
+    /* flex: 0 0 300px; */
+    flex: 1 0 auto;
+}
+
+#contact-us-form-container > #contact-us-form {
+    display: flex;
+    flex: 0 0 400px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#contact-us-form-container > #create-account-container {
+    display: flex;
+    flex: 0 0 50px;
+    flex-direction: row;
+
+}
+#contact-us-space-container {
+    display: flex;
+    flex: 0 0 600px;
+    
+}
+
+#contact-us-form-header {
+    display: flex;
+    flex: 0 0 75px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contact-us-form-header > .contact-us-header {
+    font-size: 26px;
+    color: #EB4E29;
+    font-weight: bolder;
+    background: /* gradient can be an image */
+    linear-gradient(
+      to right, 
+      #EB4E29 0%,
+      #ffa73d 100px
+    )
+    left 
+    bottom
+    no-repeat;
+    background-size:100% 3px ;
+    padding:10px;
+}
+#contact-us-form-header > .contact-us-subheader {
+    font-size: 14px;
+    color: rgb(120,120,120);
+}
