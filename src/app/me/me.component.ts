@@ -14,6 +14,7 @@ export class MeComponent implements OnInit {
 	token:String = "";
 	isLoggedIn:boolean = false;
 	walletHistory;
+	points:Number;
 	userProfile:User = {'name': "", 'email': ""};
 	constructor(private router: Router, private authService: AuthService, private dataService: DataService) {
 		// this.loadStorage();
@@ -22,6 +23,8 @@ export class MeComponent implements OnInit {
 
 	ngOnInit() {
 		
+	}
+	ionViewWillEnter() {
 	}
 
 	populateProfile() {
@@ -50,16 +53,8 @@ export class MeComponent implements OnInit {
 		this.dataService.getWalletDetails().subscribe(
 			(res:any)=>{
 				this.walletHistory = res.body[0].history;
+				this.points = res.body[0].currentBalance;
 			},(err) => {
-				this.dataService.refreshToken().subscribe(
-					(res:any)=>{
-						console.log(res);
-					},(err) => {
-						this.dataService.refreshToken();
-						console.log(err);
-					}
-				);
-				console.log(err);
 			}
 		);
 	}

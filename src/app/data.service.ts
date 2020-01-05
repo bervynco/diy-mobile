@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpRequest } from '@angula
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -82,6 +83,17 @@ export class DataService {
 			observe: 'response',
 			currentPassword: passwordDetails.currentPassword,
 			newPassword: passwordDetails.newPassword
+		}).pipe(
+		// retry(3),  // if (error) => retry 'n' times
+		catchError(this.handleError)
+		);
+		return output;
+	}
+
+	resetPassword(details) {
+		var output = this.http.post(this.BASE_PATH + 'users/forgotpassword', {
+			observe: 'response',
+			email: details.email
 		}).pipe(
 		// retry(3),  // if (error) => retry 'n' times
 		catchError(this.handleError)

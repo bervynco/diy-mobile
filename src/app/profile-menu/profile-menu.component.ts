@@ -22,6 +22,7 @@ export class ProfileMenuComponent implements OnInit {
 	}
 
 	viewContactUs() {
+		this.router.navigate(['me/contact-us']);
 		this.activeRoute = "Contact Us";
 	}
 	

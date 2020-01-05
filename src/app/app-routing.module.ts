@@ -12,6 +12,8 @@ import { ScanComponent } from './scan/scan.component';
 import { RedeemComponent } from './redeem/redeem.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { IntroComponent } from './intro/intro.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   	// {
@@ -28,7 +30,9 @@ const routes: Routes = [
 	{ path:'me/login', component: LoginComponent },
 	{ path: 'me/create-account', component: SignUpComponent },
 	{ path: 'me/change-password', component: ChangePasswordComponent },
+	{ path: 'me/reset-password', component: ResetPasswordComponent },
 	{ path: 'me/profile-menu', component: ProfileMenuComponent },
+	{ path: 'me/contact-us', component: ContactUsComponent },
 	{ path: 'branch', component: BranchComponent },
 	{ path: 'branch/branch-summary/:id', component: BranchSummaryComponent },
 	{ path: 'home', component: HomeComponent },
