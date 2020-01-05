@@ -1,5 +1,5 @@
-<!-- <ion-header translucent>
-	<ion-toolbar color="primary">
+<ion-header translucent>
+	<ion-toolbar color="primary" mode="md">
 		<ion-buttons slot="start" routerLink="/me/login">
 			<ion-button>
 				<ion-icon slot="icon-only" name="arrow-back"></ion-icon>
@@ -7,57 +7,124 @@
 		</ion-buttons>
 		<ion-title>Setup New Account</ion-title>
 	</ion-toolbar>
-</ion-header> -->
+</ion-header>
 <ion-content id="register-container">
-	<div id="register-form-container">
+	<div id="register-form-container" *ngIf="formLoaded">
 		<div class="space-eater"></div>
 		<div id="register-logo">
-			<img src="../../assets/logo/diy-logo-transparent.png" width="120"/>
+			<img src="../../assets/logo/diy-logo-transparent.png" class="image-width"/>
 		</div>
 		<div class="space-eater"></div>
+		<ion-list class="progress-bar-container">
+			<ion-list-header>
+			  <ion-label>Sign up Progress: <span id="bolder-content">{{totalCount/formInputCount * 100 | number:'1.0-0'}} %</span></ion-label>
+			</ion-list-header>
+			<ion-progress-bar value="{{totalCount/formInputCount}}"></ion-progress-bar>
+		</ion-list>
 		<div id="register-form">
-			<form [formGroup]="registerForm" (submit)="register()">
-				<ion-item>
-					<ion-input type="email" placeholder="Email Address" required="required" formControlName="email"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-input type="text" placeholder="First Name" required="required" formControlName="firstName"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-input type="text" placeholder="Last Name" required="required" formControlName="lastName"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-input type="text" placeholder="City" required="required" formControlName="city"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-input type="text" placeholder="Contact Number" required="required" formControlName="contactNumber"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-input type="password" placeholder="Password" required="required" formControlName="password"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-input type="password" placeholder="Confirm Password"></ion-input>
-				</ion-item>
-				<ion-item>
-					<ion-datetime displayFormat="MMMM DD YYYY" required="required" placeholder="Birthday" formControlName="birthday"></ion-datetime>
-				</ion-item>
-				<button type="submit" class="submit-button" [disabled]="!registerForm.valid">Create Account </button>
-						<!-- <div class="input-group">
-							<input type="email" placeholder="First Name" required="required" formControlName="firstName"/>
-						</div>
-						<div class="input-group">
-							<input type="password" placeholder="Last Name" required="required" formControlName="lastName"/>
-						</div>
-						<div class="input-group">
-							<input type="email" placeholder="Email Address" required="required" formControlName="email"/>
-						</div>
-						<div class="input-group">
-							<input type="password" placeholder="Password" required="required" formControlName="password"/>
-						</div>
-						<div class="input-group">
-							<input type="password" placeholder="Confirm Password" required="required"/>
-						</div> -->
-						
+			<form [formGroup]="stepOne" *ngIf="currentStep == 1">
+				<div class="input-group">
+					<ion-item>
+						<ion-input type="text" placeholder="First Name" required="required" formControlName="firstName"></ion-input>
+						<ion-icon name="person" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div class="input-group">
+					<ion-item>
+						<ion-input type="text" placeholder="Last Name" required="required" formControlName="lastName"></ion-input>
+						<ion-icon name="person" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div class="input-group">			
+					<ion-item>
+						<ion-datetime displayFormat="MMMM DD YYYY" required="required" placeholder="Birthday" formControlName="birthday"></ion-datetime>
+						<ion-icon name="calendar" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div class="input-group">			
+					<ion-item>
+						<ion-label>Sex</ion-label>
+						<ion-select value="" okText="Okay" cancelText="Cancel" formControlName="gender">
+							<ion-select-option value="male">Male</ion-select-option>
+							<ion-select-option value="female">Female</ion-select-option>
+						</ion-select>
+						<ion-icon src="/assets/svg/gender.svg" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div id="space-eater"></div>
+				<div class="input-group">
+					<button type="submit" class="submit-button" (click)="next(2)" [disabled]="!stepOne.valid">Next 2/3</button>
+				</div>
+			</form>
+			<form [formGroup]="stepTwo" *ngIf="currentStep == 2">
+				<div class="input-group">
+					<ion-item>
+						<ion-input type="email" placeholder="Email Address" required="required" formControlName="email"></ion-input>
+						<ion-icon name="mail" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div class="input-group">
+					<ion-item>
+						<ion-input type="password" placeholder="Password" required="required" formControlName="password"></ion-input>
+						<ion-icon name="key" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div class="input-group">
+					<ion-item>
+						<ion-input type="password" placeholder="Confirm Password" formControlName="confirmPassword"></ion-input>
+						<ion-icon name="lock" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div id="space-eater"></div>
+				<div class="error-notification-container" *ngIf="stepTwo.controls.password.errors?.pattern" >
+					<div class="red-text">Password must contain more than 8 characters, 1 upper case letter, 1 number and 1 special character</div>
+				</div>
+				<div class="error-notification-container" *ngIf="stepTwo.controls.confirmPassword.hasError('mustMatch') && !stepTwo.controls.password.errors?.pattern" >
+					<div class="red-text">Password must match</div>
+				</div>
+				<div id="space-eater"></div>
+				<div class="input-group">
+					<ion-button fill="clear" (click)="next(1)">
+						<ion-icon slot="icon-only"  name="arrow-round-back"></ion-icon>
+						Step 1/3
+					</ion-button>
+					<div class="space-eater"></div>
+					<button type="submit" class="submit-button" (click)="next(3)" [disabled]="!stepTwo.valid">Next 3/3 </button>
+				</div>
+				
+			</form>
+			<form [formGroup]="stepThree"  *ngIf="currentStep == 3">
+				<div class="input-group">			
+					<ion-item>
+						<ion-label> 63</ion-label>
+						<ion-input type="text" placeholder="Contact Number" required="required" formControlName="contactNumber" maxLength="10"></ion-input>
+						<ion-icon name="call" slot="start"></ion-icon>
+					</ion-item>
+				</div>
+				<div id="space-eater"></div>
+				<div class="autocomplete-group">	
+						<ion-item>
+						<ion-auto-complete formControlName="city"
+							[multi]="false"
+							[dataProvider]="provider"
+							[disabled]="false"
+							[maxResults]="3"
+							[showResultsFirst]="false"
+							[options]="options">
+						</ion-auto-complete>
+					</ion-item>	
+					
+				</div>
+				<div id="space-eater"></div>
+				<div class="input-group">
+					<ion-button fill="clear" (click)="next(2)">
+						<ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+						Step 2/3
+					</ion-button>
+					<div class="space-eater"></div>
+					<button type="submit" class="submit-button" (click)="register()" [disabled]="!stepThree.valid">Register </button>
+				</div>
+				
 			</form>
 		</div>
 		<div class="space-eater"></div>

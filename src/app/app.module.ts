@@ -13,6 +13,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { AppRoutingModule } from './app-routing.module';
+import { AutoCompleteModule } from 'ionic4-auto-complete';
 
 import { AppComponent } from './app.component';
 import { IntroComponent } from './intro/intro.component';
@@ -28,6 +29,7 @@ import { RedeemComponent } from './redeem/redeem.component';
 import { ScanComponent } from './scan/scan.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { Interceptor } from './interceptor';
 import { AuthService } from './auth.service';
 
@@ -47,7 +49,8 @@ import { AuthService } from './auth.service';
 		ScanComponent,
 		RedeemComponent,
 		ChangePasswordComponent,
-		ResetPasswordComponent
+		ResetPasswordComponent,
+		ContactUsComponent
 	],
 	entryComponents: [],
 	imports: [
@@ -58,7 +61,8 @@ import { AuthService } from './auth.service';
         FormsModule,
 		HttpClientModule,
 		IonicStorageModule.forRoot(),
-		NgxQRCodeModule
+		NgxQRCodeModule,
+		AutoCompleteModule
 		
 	],
 	providers: [
