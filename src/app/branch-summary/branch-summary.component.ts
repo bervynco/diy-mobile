@@ -15,6 +15,7 @@ export class BranchSummaryComponent implements OnInit {
 	options: LaunchNavigatorOptions;
 	summary: Branch;
 	storeID: String;
+	isLoadedFlag:boolean = false;
   	constructor(
 		private launchNavigator: LaunchNavigator, 
 		public alertController: AlertController, 
@@ -33,7 +34,8 @@ export class BranchSummaryComponent implements OnInit {
 	getBranchSummaryData(id) {
 		this.dataService.getBranchDetails(this.storeID).subscribe(
 			(res:any)=>{
-				this.summary = res;
+				this.summary = res.body;
+				this.isLoadedFlag = true;
 				// }
 			},(err) => {
 				

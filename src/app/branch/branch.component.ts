@@ -17,6 +17,7 @@ export class BranchComponent implements OnInit {
 	currLocation = {'longitude': 0, 'latitude': 0};
 	// currLocation;
 	branchList:Branch;
+	dataLoaded: Boolean = false;
   	constructor(
 		private geolocation: Geolocation, 
 		public alertController: AlertController, 
@@ -24,21 +25,23 @@ export class BranchComponent implements OnInit {
 		private dataService: DataService,
 		private router: Router
 	) { }
-		
-		ngOnInit(){
+		ngOnInit(){}
+
+		ionViewWillEnter() {
+			this.dataLoaded = false;
+		}
+		ionViewDidEnter(){
 			this.determineCurrentLocation();
-			
-			
 		}
 		
 		getBranchNearby() {
-			console.log(this.currLocation);
 			this.dataService.getBranchNearby(this.currLocation).subscribe(
 				(res:Branch)=>{
 					this.branchList = res;
+					this.dataLoaded = true;
 					// }
 				},(err) => {
-					
+					this.dataLoaded = true;
 				}
 			);
 		}
@@ -46,14 +49,16 @@ export class BranchComponent implements OnInit {
 			this.router.navigate(['branch/branch-summary/' + id]);
 		}
 		
-		determineCurrentLocation() {
-			console.log("Determine current loc");
-			this.geolocation.getCurrentPosition().then((resp) => {
+		async determineCurrentLocation() {
+			let options = {timeout: 10000, enableHighAccuracy: true};
+			this.geolocation.getCurrentPosition(options).then((resp) => {
 				this.currLocation.longitude = resp.coords.longitude;
 				this.currLocation.latitude = resp.coords.latitude;
+				this.createAlert("Success", this.currLocation.longitude);
+				this.createAlert("Success", this.currLocation.latitude);
 				this.getBranchNearby();
 			}).catch((error) => {
-				this.createAlert("Error", error);
+				this.createAlert("Error", "Error in catch of getCurrentPosition");
 			});
 			   
 			// let watch = this.geolocation.watchPosition();

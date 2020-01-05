@@ -1,5 +1,5 @@
 <ion-header translucent>
-	<ion-toolbar color="primary">
+	<ion-toolbar color="primary" mode="md">
 		<ion-buttons slot="start" routerLink="/branch">
 			<ion-button>
 				<ion-icon slot="icon-only" name="arrow-back"></ion-icon>
@@ -8,3 +8,46 @@
 		<ion-title>Branch Summary</ion-title>
 	</ion-toolbar>
 </ion-header>
+<ion-content fullscreen>
+	<div id="branch-summary-container" *ngIf="isLoadedFlag">
+		<div id="branch-image-container">
+			<img src="../../assets/placeholder.jpg"/>
+		</div>
+		<div id="branch-details-container">
+			<div id="space-eater"></div>
+			<div id="branch-name">
+				{{summary.name}}
+			</div>
+			<div id="branch-contact-number-container">
+				<ion-item class="wrap item-text-wrap" style="word-wrap: break-word; word-break: break-all;">
+					<ion-label id="contact-details">
+						{{summary.contactNumber}}
+					</ion-label>
+					<ion-icon name="call" size="small" slot="start"></ion-icon>
+				</ion-item>
+			</div>
+			<div id="branch-address-container">
+				<ion-item text-wrap>
+					<ion-label id="address-details" class="ion-text-wrap">
+						{{summary.address}}
+					</ion-label>
+					<ion-icon name="locate" size="small" slot="start"></ion-icon>
+				</ion-item>
+			</div>
+			<div id="space-eater"></div>
+			<div id="branch-operating-details-container">
+				<div id="header">
+					Business Hours
+				</div>
+				<div id="branch-operating-details">
+					06:00AM to 10:00PM
+				</div>
+			</div>
+		</div>
+		<div id="branch-navigate-container">
+			<div id="space-eater"></div>
+			<button type="button" class="submit-button margin-class">Navigate </button>
+			<div id="space-eater"></div>
+		</div>
+	</div>
+</ion-content>
