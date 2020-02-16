@@ -10,11 +10,11 @@
 </ion-header>
 <ion-content id="register-container">
 	<div id="register-form-container" *ngIf="formLoaded">
-		<div class="space-eater"></div>
-		<div id="register-logo">
+		<!-- <div class="space-eater"></div> -->
+		<!-- <div id="register-logo">
 			<img src="../../assets/logo/diy-logo-transparent.png" class="image-width"/>
 		</div>
-		<div class="space-eater"></div>
+		<div class="space-eater"></div> -->
 		<ion-list class="progress-bar-container">
 			<ion-list-header>
 			  <ion-label>Sign up Progress: <span id="bolder-content">{{totalCount/formInputCount * 100 | number:'1.0-0'}} %</span></ion-label>
@@ -45,8 +45,8 @@
 					<ion-item>
 						<ion-label>Sex</ion-label>
 						<ion-select value="" okText="Okay" cancelText="Cancel" formControlName="gender">
-							<ion-select-option value="male">Male</ion-select-option>
-							<ion-select-option value="female">Female</ion-select-option>
+							<ion-select-option value="Male">Male</ion-select-option>
+							<ion-select-option value="Female">Female</ion-select-option>
 						</ion-select>
 						<ion-icon src="/assets/svg/gender.svg" slot="start"></ion-icon>
 					</ion-item>
@@ -103,17 +103,30 @@
 				</div>
 				<div id="space-eater"></div>
 				<div class="autocomplete-group">	
-						<ion-item>
-						<ion-auto-complete formControlName="city"
+					<ion-item>
+						<ion-auto-complete formControlName="province"
 							[multi]="false"
-							[dataProvider]="provider"
+							[dataProvider]="provinceProvider"
 							[disabled]="false"
 							[maxResults]="3"
 							[showResultsFirst]="false"
-							[options]="options">
+							[options]="provinceOptions"
+							(itemsChange)="selectedProvince($event)">
 						</ion-auto-complete>
-					</ion-item>	
-					
+					</ion-item>
+				</div>
+				<div id="space-eater"></div>
+				<div class="autocomplete-group" *ngIf="stepThree.value.province != ''">	
+					<ion-item>
+						<ion-auto-complete formControlName="city"
+							[multi]="false"
+							[dataProvider]="cityProvider"
+							[disabled]="false"
+							[maxResults]="3"
+							[showResultsFirst]="false"
+							[options]="cityOptions">
+						</ion-auto-complete>
+					</ion-item>
 				</div>
 				<div id="space-eater"></div>
 				<div class="input-group">
@@ -124,7 +137,6 @@
 					<div class="space-eater"></div>
 					<button type="submit" class="submit-button" (click)="register()" [disabled]="!stepThree.valid">Register </button>
 				</div>
-				
 			</form>
 		</div>
 		<div class="space-eater"></div>

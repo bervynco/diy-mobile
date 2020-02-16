@@ -49,12 +49,34 @@ export class BranchSummaryComponent implements OnInit {
 		}
 	}  
 	navigate() {
-		this.initializeNavigationOption();
-		this.launchNavigator.navigate([14.533863,121.051133], this.options)
-		.then(
-				success => this.createAlert("Success", "Launched navigator"),
-				error => this.createAlert("Error", 'Error launching navigator ' + error)
-		);
+		let app = "";
+		this.launchNavigator.isAppAvailable(this.launchNavigator.APP.WAZE).then(isAvailable => {
+			if(isAvailable){
+				app = this.launchNavigator.APP.WAZE;
+			}
+			else{
+				app = this.launchNavigator.APP.USER_SELECT;
+			}
+			this.launchNavigator.navigate("London, UK", {
+				app: app
+			});
+		});
+			// var app;
+			// if(isAvailable){
+			// 	app = launchnavigator.APP.GOOGLE_MAPS;
+			// }else{
+			// 	console.warn("Google Maps not available - falling back to user selection");
+			// 	app = launchnavigator.APP.USER_SELECT;
+			// }
+			// launchnavigator.navigate("London, UK", {
+			// 	app: app
+			// });
+		// this.initializeNavigationOption();
+		// this.launchNavigator.navigate([14.533863,121.051133], this.options)
+		// .then(
+		// 		success => this.createAlert("Success", "Launched navigator"),
+		// 		error => this.createAlert("Error", 'Error launching navigator ' + error)
+		// );
 	}
 
 	async createAlert(header, message){

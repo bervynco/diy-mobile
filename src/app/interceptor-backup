@@ -17,7 +17,9 @@ import { DataService } from '../app/data.service';
 import { AuthService } from '../app/auth.service';
 
 @Injectable()
-export class Interceptor implements HttpInterceptor {
+
+//https://www.intertech.com/Blog/angular-4-tutorial-handling-refresh-token-with-new-httpinterceptor/
+export class InterceptorBackup implements HttpInterceptor {
     
     protected DEV_BASE_PATH = 'http://localhost:3494/api/v1/';
 	protected PROD_BASE_PATH = 'https://diy-platform-backend.herokuapp.com/';
@@ -59,6 +61,7 @@ export class Interceptor implements HttpInterceptor {
         const token = this.authService.getToken().then(function(response){
             return response.accessToken;
         });
+        console.log(token);
         req = req.clone({
           headers: req.headers.set("Authorization", 'Bearer ' + token)
         });
@@ -71,7 +74,6 @@ export class Interceptor implements HttpInterceptor {
         request = request.clone({ headers: request.headers.set('Access-Control-Allow-Headers', "Origin, Authorization, Content-Type, Accept") });
         
         if(request.url.search('me') > 0 || request.url.search('refreshtoken') > 0){
-            console.log("Interceptor Enabled");
             return from(this.storage.get("auth"))
             .pipe(
                 switchMap(token => {
@@ -92,14 +94,8 @@ export class Interceptor implements HttpInterceptor {
                             if(error instanceof HttpErrorResponse){
                                 console.log("Error: " + this._checkErrorExpiredToken(error));
                                 if(this._checkErrorExpiredToken(error)){
-                                    request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.refreshToken) });
                                     return this._refreshExpiredToken().pipe(
-                                        switchMap((token) => {
-                                            console.log("updated tokens: ", token);
-                                            // this.storage.set('auth', authData).then((response) => {
-                                            //     this.authState.next(true);
-                                            // });
-                                            // request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.accessToken) });
+                                        switchMap(() => {
                                             return next.handle(this.updateHeader(request));
                                         })
                                     );
@@ -116,8 +112,10 @@ export class Interceptor implements HttpInterceptor {
                 })
             );
         }
+        else if(request.url.search('refreshtoken') > 0){
+
+        }
         else{
-            console.log("Interceptor Disabled");
             return next.handle(request).pipe(
                 map((event: HttpEvent<any>) => {
                     if (event instanceof HttpResponse) {
@@ -133,7 +131,7 @@ export class Interceptor implements HttpInterceptor {
                     else {
                         returnError = error.error.message;
                     }
-                    this.createAlert("Error", error.error.data);
+                    this.createAlert("Error", returnError);
                     return throwError(returnError);
                 })
             );

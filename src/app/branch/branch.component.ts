@@ -37,6 +37,7 @@ export class BranchComponent implements OnInit {
 		getBranchNearby() {
 			this.dataService.getBranchNearby(this.currLocation).subscribe(
 				(res:Branch)=>{
+					alert("LOADED");
 					this.branchList = res;
 					this.dataLoaded = true;
 					// }

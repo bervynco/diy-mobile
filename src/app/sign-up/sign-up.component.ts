@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,  Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, AngularDelegate } from '@ionic/angular';
 import { MustMatch } from '../_helpers/must-match.validator';
-import {CityAutocompleteService} from '../city-autocomplete.service';
-import {AutoCompleteOptions} from 'ionic4-auto-complete';
+import { CityAutoCompleteService } from '../city-autocomplete.service';
+import { ProvinceAutoCompleteService } from '../province-autocomplete.service';
+import { AutoCompleteOptions } from 'ionic4-auto-complete';
 @Component({
 	selector: 'sign-up',
 	templateUrl: './sign-up.component.html',
@@ -21,7 +22,9 @@ export class SignUpComponent implements OnInit {
 	formLoaded:boolean = false;
 	currentStep:number = 1;
 	cityData:any;
-	public options:AutoCompleteOptions;
+	provinceData:any;
+	public cityOptions:AutoCompleteOptions;
+	public provinceOptions:AutoCompleteOptions;
 
 	constructor(
 		private stepOneBuilder: FormBuilder,
@@ -29,7 +32,17 @@ export class SignUpComponent implements OnInit {
 		private stepThreeBuilder: FormBuilder,
 		public alertController: AlertController,
 		public dataService: DataService,
-		public provider: CityAutocompleteService) {
+		public cityProvider: CityAutoCompleteService,
+		public provinceProvider: ProvinceAutoCompleteService,
+		public router: Router) {
+		
+		this.initializeFormBuilder();
+		this.initializeCityAutoComplete();
+		this.initializeProvinceAutoComplete();
+	
+		
+	}
+	initializeFormBuilder() {
 		this.stepOne = this.stepOneBuilder.group({
 			firstName: new FormControl('Bervyn', [
 				Validators.required
@@ -40,14 +53,14 @@ export class SignUpComponent implements OnInit {
 			birthday: new FormControl('06/10/1993', [
 				Validators.required
 			]),
-			gender: new FormControl('male', [
+			gender: new FormControl('Male', [
 				Validators.required
 			]), 
 			
 		});
 
 		this.stepTwo = this.stepTwoBuilder.group({
-			email: new FormControl('bervyn_co2010@yahoo.com', [
+			email: new FormControl('bervynco@gmail.com', [
 				Validators.required
 			]),
 			password: new FormControl('Password01!', [
@@ -62,27 +75,43 @@ export class SignUpComponent implements OnInit {
 		});
 
 		this.stepThree = this.stepThreeBuilder.group({
+			province: new FormControl('', [
+				Validators.required
+			]),
 			city: new FormControl('', [
 				Validators.required
 			]),
-			contactNumber: new FormControl('', [
+			contactNumber: new FormControl('9178173687', [
 				Validators.required
 			]),
 			
 		});
-
-		this.options = new AutoCompleteOptions();
-
-		this.options.autocomplete = 'on';
-		// this.options.cancelButtonIcon = 'assets/icons/clear.svg';
-		// this.options.clearIcon = 'assets/icons/clear.svg';
-		this.options.debounce = 750;
-		this.options.placeholder = 'Search for city..';
-		// this.options.searchIcon = '../../assets/svg/search.svg';
-		this.options.type = 'search';
-	
 		this.formInputCount = Object.keys(this.stepOne.controls).length + Object.keys(this.stepTwo.controls).length + Object.keys(this.stepThree.controls).length;
 		this.formLoaded = true;
+	}
+
+	initializeCityAutoComplete() {
+		this.cityOptions = new AutoCompleteOptions();
+		
+		this.cityOptions.autocomplete = 'on';
+		// this.options.cancelButtonIcon = 'assets/icons/clear.svg';
+		// this.options.clearIcon = 'assets/icons/clear.svg';
+		this.cityOptions.debounce = 750;
+		this.cityOptions.placeholder = 'Search for city..';
+		// this.options.searchIcon = '../../assets/svg/search.svg';
+		this.cityOptions.type = 'search';
+		
+	}
+
+	initializeProvinceAutoComplete() {
+		this.provinceOptions = new AutoCompleteOptions();
+		this.provinceOptions.autocomplete = 'on';
+		// this.options.cancelButtonIcon = 'assets/icons/clear.svg';
+		// this.options.clearIcon = 'assets/icons/clear.svg';
+		this.provinceOptions.debounce = 750;
+		this.provinceOptions.placeholder = 'Search for province..';
+		// this.options.searchIcon = '../../assets/svg/search.svg';
+		this.provinceOptions.type = 'search';
 	}
 	// get formValidator() {
 	// 	return this.registerForm.controls; 
@@ -94,6 +123,22 @@ export class SignUpComponent implements OnInit {
 
 	register() {
 		this.holdForm = true;
+		let details = [];
+		let consolidatedDetails = {};
+		details.push(this.stepOne.value);
+		details.push(this.stepTwo.value);
+		details.push(this.stepThree.value);
+		consolidatedDetails = this.flattenObject(details);
+		this.dataService.registerUser(consolidatedDetails).subscribe(
+			(res:any)=>{
+				console.log(res);
+				// this.createToast("Reset complete", 200, "bottom");
+				this.router.navigate(['/me']);
+				// this.hideLoader();
+			},(err) => {
+				// this.hideLoader();
+			}
+		);
 		// let user = this.registerForm.value;
 		// console.log(user);
 		// this.dataService.registerUser() {
@@ -117,5 +162,27 @@ export class SignUpComponent implements OnInit {
 		this.currentStep = step;
 	}
 	ngOnInit() {}
+	selectedProvince(event){
+		this.cityProvider.setFilter(this.stepThree.value.province);
+	}
 
+	flattenObject = function(ob) {
+		var toReturn = {};
+		
+		for (var i in ob) {
+			if (!ob.hasOwnProperty(i)) continue;
+			
+			if ((typeof ob[i]) == 'object') {
+				var flatObject = this.flattenObject(ob[i]);
+				for (var x in flatObject) {
+					if (!flatObject.hasOwnProperty(x)) continue;
+					
+					toReturn[x] = flatObject[x];
+				}
+			} else {
+				toReturn[i] = ob[i];
+			}
+		}
+		return toReturn;
+	};
 }

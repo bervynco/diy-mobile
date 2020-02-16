@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
-    "@ionic-native/barcode-scanner": "^5.18.0",
+    "@ionic-native/barcode-scanner": "^5.21.5",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/geolocation": "^5.18.0",
     "@ionic-native/launch-navigator": "^5.0.0",
@@ -42,6 +42,7 @@
     "core-js": "^2.5.4",
     "jsbarcode": "^3.11.0",
     "ngx-barcode6": "^1.0.9",
+    "phonegap-plugin-barcodescanner": "^8.1.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "uk.co.workingedge.phonegap.plugin.launchnavigator": "^5.0.4",
@@ -94,7 +95,7 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "uk.co.workingedge.phonegap.plugin.launchnavigator": {
-        "GOOGLE_API_KEY_FOR_ANDROID": "AIzaSyBi5XwkLAJoIhEmpL6B8za-iW8_VqQP6pQ",
+        "GOOGLE_API_KEY_FOR_ANDROID": "AIzaSyB03DoiuuhwkiJ2eH8k_hfRxfudCuIUXcE",
         "OKHTTP_VERSION": "3.12.0"
       },
       "cordova-plugin-nativestorage": {},
@@ -102,6 +103,9 @@
       "cordova-plugin-native-spinner": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      },
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },
     "platforms": [

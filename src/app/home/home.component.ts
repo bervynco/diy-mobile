@@ -87,4 +87,16 @@ export class HomeComponent implements OnInit {
 		this.storage.set('first_time', 'done');
 		this.router.navigate(['home']);
 	}
+
+	getDataUri(url, callback) {
+		var canvas = document.createElement("canvas");
+		// canvas = canvas.getContext("2d");
+	}
+
+	getImage(imageUrl) {
+		console.log(imageUrl);
+		this.getDataUri(imageUrl, function(dataUri) {
+			console.log(dataUri);
+		});
+	}
 }

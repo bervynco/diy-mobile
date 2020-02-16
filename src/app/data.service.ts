@@ -58,7 +58,8 @@ export class DataService {
 
 	registerUser(details) {
 		//httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
-		var output = this.http.post(this.BASE_PATH + 'users/appusers', details, {
+		var output = this.http.post(this.BASE_PATH + 'users/register', details, {
+			observe: 'response'
 		}).pipe(
 		// retry(3),  // if (error) => retry 'n' times
 		catchError(this.handleError)
