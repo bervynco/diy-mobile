@@ -11,7 +11,7 @@ export class DataService {
 	token = "";
 	DEV_BASE_PATH = 'http://localhost:10010/api/v1/';
 	PROD_BASE_PATH = 'https://diy-platform-backend.herokuapp.com/api/v1/';
-	BASE_PATH = this.DEV_BASE_PATH;
+	BASE_PATH = this.PROD_BASE_PATH;
 	// token = localStorage.getItem("auth");
   
   	constructor(private http: HttpClient, private authService: AuthService) {

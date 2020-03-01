@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import { AlertController, ToastController, Platform } from '@ionic/angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
 	selector: 'app-scan',
@@ -11,6 +12,7 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
 export class ScanComponent implements OnInit {
 	options: BarcodeScannerOptions;
 	scannedData: any;
+	points: any = 0.0;
 	constructor(
 		public barcodeCtrl: BarcodeScanner,
 		private toastController: ToastController,
@@ -22,9 +24,9 @@ export class ScanComponent implements OnInit {
 	}
 	initializeScanner() {
 		const options: BarcodeScannerOptions = {
-			preferFrontCamera: true,
-			showFlipCameraButton: true,
-			showTorchButton: true,
+			preferFrontCamera: false,
+			showFlipCameraButton: false,
+			showTorchButton: false,
 			torchOn: false,
 			prompt: 'Place a barcode inside the scan area',
 			resultDisplayDuration: 1500,

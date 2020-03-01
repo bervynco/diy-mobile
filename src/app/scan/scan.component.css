@@ -5,4 +5,44 @@
 .transparent-body {
     background: none transparent !important;
     opacity: 0 !important;
-  }
+}
+
+#scan-container {
+    height: calc(100% - 5px);
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+}
+
+#scan-container > #scan-header {
+    display: flex;
+    flex: 0 0 200px;
+    justify-content: center;
+    align-items: center;
+}
+#scan-header > #scan-details {
+    display: flex;
+    flex: 0 0 100px;
+    flex-direction:column;
+    width: 100%;
+    
+}
+
+#scan-details > #scan-earned {
+    font-size: 56px;
+    font-weight: bolder;
+    color:#EB4E29;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#scan-details > #scan-subtitle {
+    font-size: 12px;
+    font-weight: light;
+    color: #71737D;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}

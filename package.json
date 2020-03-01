@@ -36,6 +36,7 @@
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.2",
+    "cordova-plugin-ios-camera-permissions": "^1.2.0",
     "cordova-plugin-native-spinner": "^1.1.3",
     "cordova-plugin-nativestorage": "^2.3.2",
     "cordova-sqlite-storage": "^3.4.0",
@@ -106,6 +107,12 @@
       },
       "phonegap-plugin-barcodescanner": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-ios-camera-permissions": {
+        "CAMERA_USAGE_DESCRIPTION": "your usage message",
+        "MICROPHONE_USAGE_DESCRIPTION": "your microphone usage message here",
+        "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "your photo library usage message here",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "your photo library usage message here"
       }
     },
     "platforms": [

@@ -9,6 +9,16 @@
 	</ion-toolbar>
 </ion-header>
 <ion-content>
-	<ion-button expand='block' margin (click)="goToBarcodeScan()">Click to scan a barcode</ion-button>
-  
+	<div id="scan-container">
+		<div id="scan-header">
+			<div id="scan-details">
+				<div id="scan-earned"> {{points}} </div>
+				<div id="scan-subtitle">points earned</div>
+			</div>
+		</div>
+		<div id="scan-body">
+			<ion-button expand='block' margin (click)="goToBarcodeScan()">Click to scan a barcode</ion-button>
+		</div>
+	</div>
+	
 </ion-content>
