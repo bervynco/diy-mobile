@@ -96,7 +96,7 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "uk.co.workingedge.phonegap.plugin.launchnavigator": {
-        "GOOGLE_API_KEY_FOR_ANDROID": "AIzaSyB03DoiuuhwkiJ2eH8k_hfRxfudCuIUXcE",
+        "GOOGLE_API_KEY_FOR_ANDROID": "XXXXX",
         "OKHTTP_VERSION": "3.12.0"
       },
       "cordova-plugin-nativestorage": {},

@@ -6,29 +6,34 @@
 <ion-content fullscreen>
 	<ion-list *ngIf="dataLoaded">
 		<ion-list-header>
-			<ion-input type="text" placeholder="Search" required="required"></ion-input>
+			<ion-searchbar placeholder="Search for Branch" showCancelButton="never" (ionInput)="filterList($event)" debounce="500"></ion-searchbar>
+			<!-- <ion-input type="text" placeholder="Search" required="required"></ion-input> -->
 		</ion-list-header>
-		<div class="no-data" *ngIf="branchList.length == 0">
-			No Data
-		</div>
-		<ion-item button class="navigation-item" (click)="routeBuilder(branch.id)" ng-if="branchList.length > 0" *ngFor="let branch of branchList" >
-			<ion-thumbnail slot="start">
-				<ion-img src="../../assets/placeholder.jpg"></ion-img>
-			</ion-thumbnail>
-			<ion-label class="navigation-details">
-				<div class="navigation-title" *ngIf="branch.name != null">{{branch.name}}</div>
-				<div class="navigation-title" *ngIf="branch.name == null">DIY Hardware</div>
-				<div class="space-eater"></div>
-				<div class="navigation-subtitle" *ngIf="branch.address != null">{{branch.address}}</div>
-				<div class="navigation-subtitle" *ngIf="branch.address == null">No address specified</div>
-			</ion-label>
-			<div class="navigation-distance">
-				<div class="navigation-total">4</div>
-				<div class="space-eater"></div>
-				<div class="navigation-unit">km</div>
+		<ng-container *ngIf="branchList.length == 0">
+			<div class="no-data">
+				No Data
 			</div>
-			<ion-ripple-effect type="bounded"></ion-ripple-effect>
-		</ion-item>
+		</ng-container>
+		<ng-container *ngIf="branchList.length > 0">
+			<ion-item button class="navigation-item" (click)="routeBuilder(branch.id)" *ngFor="let branch of filteredBranchList" >
+				<ion-thumbnail slot="start">
+					<ion-img src="../../assets/placeholder.jpg"></ion-img>
+				</ion-thumbnail>
+				<ion-label class="navigation-details">
+					<div class="navigation-title" *ngIf="branch.name != null">{{branch.name}}</div>
+					<div class="navigation-title" *ngIf="branch.name == null">DIY Hardware</div>
+					<div class="space-eater"></div>
+					<div class="navigation-subtitle" *ngIf="branch.address != null">{{branch.address}}</div>
+					<div class="navigation-subtitle" *ngIf="branch.address == null">No address specified</div>
+				</ion-label>
+				<div class="navigation-distance">
+					<div class="navigation-total">4</div>
+					<div class="space-eater"></div>
+					<div class="navigation-unit">km</div>
+				</div>
+				<ion-ripple-effect type="bounded"></ion-ripple-effect>
+			</ion-item>
+		</ng-container>
 	</ion-list>
 	<ion-list *ngIf="!dataLoaded">
 		<ion-list-header>

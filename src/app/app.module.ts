@@ -32,6 +32,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { Interceptor } from './interceptor';
 import { AuthService } from './auth.service';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AuthService } from './auth.service';
 		RedeemComponent,
 		ChangePasswordComponent,
 		ResetPasswordComponent,
-		ContactUsComponent
+		ContactUsComponent,
+		TermsAndConditionsComponent
 	],
 	entryComponents: [],
 	imports: [

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpRequest } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, forkJoin } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
@@ -15,14 +15,6 @@ export class DataService {
 	// token = localStorage.getItem("auth");
   
   	constructor(private http: HttpClient, private authService: AuthService) {
-		// this.authService.getStorage("auth").then(function(token){
-		// 	this.token=token;
-		// })
-		// console.log(this.token);
-		// this.headers = this.headers.append("Content-Type", 'application/json');
-		// this.headers = this.headers.append('Authorization', "Bearer " + this.token);
-		// this.headers = this.headers.append("Access-Control-Allow-Origin", "*");
-		// this.headers = this.headers.append("Access-Control-Allow-Headers", "Origin, Authorization, Content-Type, Accept");
 	}
 	
     private handleError(error: HttpErrorResponse) {
@@ -54,10 +46,14 @@ export class DataService {
 		);
 		return output;
 	}
+
+	getProfile() {
+		return this.http.get(this.BASE_PATH + 'users/me', {
+		});
+	}
 	/* User Management */
 
 	registerUser(details) {
-		//httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
 		var output = this.http.post(this.BASE_PATH + 'users/register', details, {
 			observe: 'response'
 		}).pipe(
@@ -70,15 +66,17 @@ export class DataService {
 	/* End of user Management */
 	/* Me */
 	getWalletDetails() {
-		var output = this.http.get(this.BASE_PATH + 'wallet/me', {
-			observe: 'response'
-		}).pipe(
-		// retry(3),  // if (error) => retry 'n' times
-		catchError(this.handleError)
-		);
-		return output;
+		return this.http.get(this.BASE_PATH + 'wallet/me', {
+		});
 	}
 	
+	getMyDetails() {
+		return forkJoin(this.getWalletDetails(), this.getProfile());
+	}
+
+	getMeDetails() {
+
+	}
 	changePassword(passwordDetails) {
 		var output = this.http.post(this.BASE_PATH + 'users/me/changepassword', {
 			observe: 'response',

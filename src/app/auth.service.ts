@@ -69,7 +69,7 @@ import { BehaviorSubject } from 'rxjs';
  
 @Injectable()
 export class AuthService {
- 
+	private loggedIn = new BehaviorSubject<boolean>(false); // {1}
   	authState = new BehaviorSubject(false);
  
   	constructor(
@@ -78,38 +78,61 @@ export class AuthService {
 		private platform: Platform,
 		public toastController: ToastController
 	) {
-		this.platform.ready().then(() => {
-			this.ifLoggedIn();
-		});
+		// this.platform.ready().then(() => {
+		// 	this.ifLoggedIn();
+		// });
 	}
- 
-  	ifLoggedIn() {
-		this.storage.get("auth").then((response) => {
-			if (response) {
-				this.authState.next(true);
+	get isLoggedIn() {
+		let authToken = this.getToken(); 
+		
+		authToken.then((response) => {
+			if(response === null || response === ""){
+				this.loggedIn.next(false);
+				return false;
+			}
+			else{
+				this.loggedIn.next(true);
+				return true;
 			}
 		});
+		return this.loggedIn.asObservable();
   	}
-	  
+  	
 	getToken() {
 		return this.storage.get("auth").then((response) => {
 			return response;
 		});
 	}
+
+	hasToken() {
+		return this.storage.get("auth").then((response) => {
+			if(response !== null){
+				if('accessToken' in response){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				return false;
+			}
+		});
+	}
   	login(authData) {
 		this.storage.set('auth', authData).then((response) => {
-			this.authState.next(true);
+			this.loggedIn.next(true);
 		});
   	}
  
 	logout() {
 		this.storage.remove('auth').then(() => {
-			this.authState.next(false);
+			this.loggedIn.next(false);
 		});
 	}
  
 	isAuthenticated() {
-		return this.authState.value;
+		return this.loggedIn.value;
 	}
 
  

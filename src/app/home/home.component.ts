@@ -93,10 +93,7 @@ export class HomeComponent implements OnInit {
 		// canvas = canvas.getContext("2d");
 	}
 
-	getImage(imageUrl) {
-		console.log(imageUrl);
-		this.getDataUri(imageUrl, function(dataUri) {
-			console.log(dataUri);
-		});
+	getImage() {
+		
 	}
 }

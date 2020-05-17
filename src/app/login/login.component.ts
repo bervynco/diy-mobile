@@ -3,9 +3,10 @@ import { NgForm, ReactiveFormsModule, FormGroup,  FormBuilder,  Validators, Form
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular';
-
+import { Observable } from 'rxjs';
 
 import { AuthService } from '../auth.service';
+import { LoaderService } from '../loader.service';
 @Component({
 	  selector: 'login',
 	  templateUrl: './login.component.html',
@@ -17,12 +18,14 @@ export class LoginComponent implements OnInit {
 	password:string;
 	statusMessage:string;
 	spinnerLoader: any;
+	isLoggedIn$: Observable<boolean>;
 	constructor(private formBuilder: FormBuilder, private alertController: AlertController, private toastController: ToastController, 
-			private loadingController: LoadingController, private Login: DataService, private authService:AuthService, private router: Router,
+			private loadingController: LoadingController, private Login: DataService, 
+			private authService:AuthService, private router: Router, private loaderService:LoaderService
 	) { }
 
   	ngOnInit() {
-		
+		this.isLoggedIn$ = this.authService.isLoggedIn;
 		this.loginForm = this.formBuilder.group({
 			email: new FormControl('bervyn_co2010@yahoo.com', [
 				Validators.required
@@ -34,23 +37,6 @@ export class LoginComponent implements OnInit {
 		});
 		// this.hideLoader();
   	}
-	showLoader() {
-		this.spinnerLoader = this.loadingController.create({
-			message: 'Please wait',
-			cssClass: '.custom-loading-class',
-			spinner: 'crescent',
-			
-		}).then((res) => {
-			console.log(res);
-			res.present();
-		});
-	}
-	 
-	hideLoader() {
-		setTimeout(() => {
-		  this.loadingController.dismiss();
-		}, 2000);
-	}
 	async createAlert(header, message){
 		const alert = await this.alertController.create({
 			header: header,
@@ -79,29 +65,18 @@ export class LoginComponent implements OnInit {
 		toast.present();
 	}
 	async login() {
-		this.showLoader();
+		this.loaderService.showLoader();
 		let details = this.loginForm.value;
 		
 		this.Login.login(details).subscribe(
 			(res:any)=>{
 				this.createToast("Login complete", 200, "bottom");
-				// this.authService.setStorage("auth", res);
 				this.authService.login(res);
 				this.createToast("Login successful",200, "bottom");
 				this.router.navigate(['/me']);
-				this.hideLoader();
-				
-				// if(res.status == 900){
-				// 	this.createAlert("Login failed", "The email address or password entered is incorrect");
-				// }
-				// else {
-				// 	// localStorage.setItem("access_token", res.accessToken);
-				// 	// localStorage.setItem("refresh_token",res.refreshToken);
-				// 	// this.router.navigate(["branch-management"]);
-				// 	// console.log("Complete");
-				// }
+				this.loaderService.hideLoader();
 			},(err) => {
-				this.hideLoader();
+				this.loaderService.hideLoader();
 			}
 		);
 		

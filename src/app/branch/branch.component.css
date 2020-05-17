@@ -1,4 +1,7 @@
 
+.search-bar {
+    text-transform:none;
+}
 .navigation-item {
     display: flex;
     flex: 1 0 auto;

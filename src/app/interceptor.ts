@@ -86,27 +86,16 @@ export class Interceptor implements HttpInterceptor {
                             return event;
                         }),
                         catchError((error, caught) => {
-                            console.log("Access token: " + token.accessToken);
-                            console.log("Refresh token: " + token.refreshToken);
                             this.createAlert("Error", error.error.message);
+                            
                             if(error instanceof HttpErrorResponse){
-                                console.log("Error: " + this._checkErrorExpiredToken(error));
-                                if(this._checkErrorExpiredToken(error)){
-                                    request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.refreshToken) });
-                                    return this._refreshExpiredToken().pipe(
-                                        switchMap((token) => {
-                                            console.log("updated tokens: ", token);
-                                            // this.storage.set('auth', authData).then((response) => {
-                                            //     this.authState.next(true);
-                                            // });
-                                            // request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.accessToken) });
-                                            return next.handle(this.updateHeader(request));
-                                        })
-                                    );
+                                if(error.error.statusCode == 401){
+                                    this.authService.logout();
                                 }
                                 else {
                                     return throwError(error);
                                 }
+                                
                             }
                             else {
                                 return caught;

@@ -8,6 +8,8 @@ import {
 	BarcodeScannerOptions,
 	BarcodeScanner
 } from "@ionic-native/barcode-scanner/ngx";
+import { Observable } from 'rxjs';
+import { LoaderService } from '../loader.service';
 
 @Component({
 	selector: 'app-redeem',
@@ -16,63 +18,66 @@ import {
 })
 export class RedeemComponent implements OnInit {
 	points:Number;
-	isLoggedIn:boolean = false;
-	constructor(private router: Router, private authService: AuthService, private toastController: ToastController, private dataService: DataService) {
+	isLoggedIn$: Observable<boolean>;
+	isLoaded:boolean = false;
+	constructor(private router: Router, private authService: AuthService, private toastController: ToastController, 
+		private loaderService: LoaderService,private dataService: DataService) {
 		// this.loadStorage();
-		this.checkIfAuthenticated();
 	}
-	data:any = {
-		'userId': 41
-	}
+	data:string=""
 	encodedData:String = "";
 	
 	ngOnInit() {
-		this.generateQr();
 	}
 	
 	ionViewWillEnter() {
 		this.checkIfAuthenticated();
 	}
 	checkIfAuthenticated() {
-		this.authService.authState.subscribe(state => {
-			if(state == true){
-				this.getWalletDetails();
+		this.loaderService.showLoader();
+		this.isLoggedIn$ = this.authService.isLoggedIn;
+		this.authService.hasToken().then(response => {
+			if(response === true){
+				this.dataService.getMyDetails().subscribe(
+					(res:any)=> {
+						this.points = res[0][0].currentBalance;
+						this.data = res[1].customerKey;
+						this.generateQr();
+
+						
+					},(err) => {
+						this.loaderService.hideLoader();
+					}
+				)
 			}
-			else {
-				this.createToast("You are not logged in. Please complete login.", 401, "bottom");
+			else{
+				this.loaderService.createToast("You are not logged in. Please complete login.", 401, "bottom");
 				this.router.navigate(['me/login']);
 			}
-			this.isLoggedIn = state;
 		});
+		this.loaderService.hideLoader();
 	}
 
-	getWalletDetails() {
-		this.dataService.getWalletDetails().subscribe(
-			(res:any)=>{
-				this.points = res.body[0].currentBalance;
-			},(err) => {
-			}
-		);
-	}
+	// getWalletDetails() {
+	// 	this.dataService.getWalletDetails().subscribe(
+	// 		(res:any)=>{
+	// 			this.points = res.body[0].currentBalance;
+	// 		},(err) => {
+	// 		}
+	// 	);
+	// }
+
+	// getProfileDetails() {
+	// 	this.dataService.getProfile().subscribe(
+	// 		(res:any)=>{
+	// 			this.data = res.customerKey;
+	// 			this.generateQr();
+	// 		},(err) => {
+	// 	});
+	// }
 	generateQr() {
 		this.encodedData = JSON.stringify(this.data);
 	}
 
-	async createToast(message, code, position){
-		let color = "";
-		if(code == 200)
-			color = "primary";
-		else
-			color = "danger";
-
-		const toast = await this.toastController.create({
-			color: color,
-	        duration: 3000,
-	        message: message,
-			showCloseButton: true,
-			animated: true,
-			position: position
-		});
-		toast.present();
-	}
+	
 }

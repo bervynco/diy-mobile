@@ -9,7 +9,7 @@
 
 #branch-summary-container > #branch-image-container {
     display: flex;
-    flex: 0 0 200px;
+    flex: 0 0 150px;
 }
 
 #branch-summary-container > #branch-details-container {
@@ -35,7 +35,7 @@
 
 #branch-details-container > #branch-operating-details-container {
     display: flex;
-    flex: 0 0 100px;
+    flex: 0 0 50px;
     flex-direction: column;
 }
 #branch-operating-details-container > #space-eater {

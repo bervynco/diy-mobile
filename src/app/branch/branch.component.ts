@@ -16,7 +16,8 @@ export class BranchComponent implements OnInit {
 	//currLocation = {'longitude': 14.535378, 'latitude': 121.051348};
 	currLocation = {'longitude': 0, 'latitude': 0};
 	// currLocation;
-	branchList:Branch;
+	branchList:any;
+	filteredBranchList:any;
 	dataLoaded: Boolean = false;
   	constructor(
 		private geolocation: Geolocation, 
@@ -34,11 +35,26 @@ export class BranchComponent implements OnInit {
 			this.determineCurrentLocation();
 		}
 		
+		filterList(event){
+			let searchValue = event.target.value;
+			this.filteredBranchList = this.branchList;
+			if (searchValue && searchValue.trim() !== '') {
+				this.filteredBranchList = this.filteredBranchList.filter((branch) => {
+					return (
+						branch.address.toLowerCase().indexOf(searchValue.toLowerCase()) > -1 || 
+						branch.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1 ||
+						branch.city.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+					);
+				})
+			}
+			console.log(this.branchList);
+		}
 		getBranchNearby() {
 			this.dataService.getBranchNearby(this.currLocation).subscribe(
 				(res:Branch)=>{
-					alert("LOADED");
 					this.branchList = res;
+					this.filteredBranchList = res;
+					console.log(this.branchList);
 					this.dataLoaded = true;
 					// }
 				},(err) => {
@@ -55,8 +71,8 @@ export class BranchComponent implements OnInit {
 			this.geolocation.getCurrentPosition(options).then((resp) => {
 				this.currLocation.longitude = resp.coords.longitude;
 				this.currLocation.latitude = resp.coords.latitude;
-				this.createAlert("Success", this.currLocation.longitude);
-				this.createAlert("Success", this.currLocation.latitude);
+				// this.createAlert("Success", this.currLocation.longitude);
+				// this.createAlert("Success", this.currLocation.latitude);
 				this.getBranchNearby();
 			}).catch((error) => {
 				this.createAlert("Error", "Error in catch of getCurrentPosition");

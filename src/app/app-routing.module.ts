@@ -14,6 +14,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { IntroComponent } from './intro/intro.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 const routes: Routes = [
   	// {
@@ -33,6 +34,7 @@ const routes: Routes = [
 	{ path: 'me/reset-password', component: ResetPasswordComponent },
 	{ path: 'me/profile-menu', component: ProfileMenuComponent },
 	{ path: 'me/contact-us', component: ContactUsComponent },
+	{ path: 'me/terms', component: TermsAndConditionsComponent },
 	{ path: 'branch', component: BranchComponent },
 	{ path: 'branch/branch-summary/:id', component: BranchSummaryComponent },
 	{ path: 'home', component: HomeComponent },

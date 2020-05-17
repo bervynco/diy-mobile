@@ -7,7 +7,7 @@
 		<div id="login-form">
 			<form [formGroup]="loginForm" (submit)="login()">
 				<div id="login-form-header">
-					<p class="login-header"> Login </p>
+					<p class="login-header"> Login {{isLoggedIn$ | async}} </p>
 					<p class="login-subheader" > Welcome Back! Log-in to your account </p>
 				</div>
 				<div id="form-container">
